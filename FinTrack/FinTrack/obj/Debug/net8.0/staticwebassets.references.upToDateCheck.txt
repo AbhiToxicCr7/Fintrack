@@ -1,0 +1,3 @@
+D:\Personal\Project\FinTrack\ResourceServer\obj\Debug\net8.0\staticwebassets.build.json
+D:\Personal\Project\FinTrack\ResourceServer\obj\Debug\net8.0\staticwebassets.build.json
+D:\Personal\Project\FinTrack\ResourceServer\obj\Debug\net8.0\staticwebassets.build.json

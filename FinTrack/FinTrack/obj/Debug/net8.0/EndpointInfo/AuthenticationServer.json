@@ -1,0 +1,689 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "AuthenticationServer",
+    "version": "1.0"
+  },
+  "paths": {
+    "/api/Auth/Login": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginDTO"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginDTO"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/.well-known/jwks.json": {
+      "get": {
+        "tags": [
+          "JWKS"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Test/Registration": {
+      "post": {
+        "tags": [
+          "Test"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Test/Login": {
+      "post": {
+        "tags": [
+          "Test"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/User/Register": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterDTO"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterDTO"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/User/GetProfile": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/User/UpdateProfile": {
+      "put": {
+        "tags": [
+          "User"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateProfileDTO"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateProfileDTO"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateProfileDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/UserDetail": {
+      "get": {
+        "tags": [
+          "UserDetail"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/UserDetail"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/UserDetail"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/UserDetail"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/UserDetail/GetById/{id}": {
+      "get": {
+        "tags": [
+          "UserDetail"
+        ],
+        "operationId": "GetUserDetailByUserId",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserDetail"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserDetail"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserDetail"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/UserDetail/Add": {
+      "post": {
+        "tags": [
+          "UserDetail"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserDetail"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserDetail"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserDetail"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "LoginDTO": {
+        "required": [
+          "ClientId",
+          "Password",
+          "UserName"
+        ],
+        "type": "object",
+        "properties": {
+          "Password": {
+            "maxLength": 100,
+            "minLength": 6,
+            "type": "string"
+          },
+          "UserName": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "ClientId": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "LoginRequest": {
+        "type": "object",
+        "properties": {
+          "Name": {
+            "type": "string",
+            "nullable": true
+          },
+          "Password": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "RegisterDTO": {
+        "required": [
+          "Email",
+          "Firstname",
+          "Password",
+          "UserName"
+        ],
+        "type": "object",
+        "properties": {
+          "Firstname": {
+            "maxLength": 50,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Lastname": {
+            "maxLength": 50,
+            "type": "string",
+            "nullable": true
+          },
+          "Email": {
+            "maxLength": 100,
+            "minLength": 1,
+            "type": "string",
+            "format": "email"
+          },
+          "Password": {
+            "maxLength": 100,
+            "minLength": 6,
+            "type": "string"
+          },
+          "Address": {
+            "type": "string",
+            "nullable": true
+          },
+          "PhoneNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "UserName": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Role": {
+        "required": [
+          "Name"
+        ],
+        "type": "object",
+        "properties": {
+          "Id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "Name": {
+            "maxLength": 50,
+            "minLength": 1,
+            "type": "string"
+          },
+          "Description": {
+            "type": "string",
+            "nullable": true
+          },
+          "UserRoles": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UserRole"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "UpdateProfileDTO": {
+        "type": "object",
+        "properties": {
+          "Firstname": {
+            "maxLength": 50,
+            "type": "string",
+            "nullable": true
+          },
+          "Lastname": {
+            "maxLength": 50,
+            "type": "string",
+            "nullable": true
+          },
+          "Email": {
+            "maxLength": 100,
+            "type": "string",
+            "format": "email",
+            "nullable": true
+          },
+          "Password": {
+            "maxLength": 100,
+            "minLength": 6,
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "User": {
+        "required": [
+          "Email",
+          "FirstName",
+          "Password",
+          "UserName"
+        ],
+        "type": "object",
+        "properties": {
+          "Id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "Email": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "FirstName": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "LastName": {
+            "type": "string",
+            "nullable": true
+          },
+          "PhoneNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "Address": {
+            "type": "string",
+            "nullable": true
+          },
+          "Password": {
+            "maxLength": 100,
+            "minLength": 0,
+            "type": "string"
+          },
+          "UserName": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "IsActive": {
+            "type": "boolean"
+          },
+          "UserRole": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UserRole"
+            },
+            "nullable": true
+          },
+          "UserDetail": {
+            "$ref": "#/components/schemas/UserDetail"
+          },
+          "FullName": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "UserDetail": {
+        "required": [
+          "AnnualSalary",
+          "JobTitle",
+          "Profession",
+          "UserId"
+        ],
+        "type": "object",
+        "properties": {
+          "Id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "UserId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "Profession": {
+            "maxLength": 100,
+            "minLength": 1,
+            "type": "string"
+          },
+          "JobTitle": {
+            "maxLength": 100,
+            "minLength": 1,
+            "type": "string"
+          },
+          "AnnualSalary": {
+            "type": "number",
+            "format": "double"
+          },
+          "MonthlySalary": {
+            "type": "number",
+            "format": "double",
+            "readOnly": true
+          },
+          "MonthlyIncome": {
+            "type": "number",
+            "format": "double"
+          },
+          "MonthlyExpenses": {
+            "type": "number",
+            "format": "double"
+          },
+          "MonthlyInvestment": {
+            "type": "number",
+            "format": "double"
+          },
+          "CreatedDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "UpdatedDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "User": {
+            "$ref": "#/components/schemas/User"
+          },
+          "UserInvestments": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UserInvestment"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "UserInvestment": {
+        "required": [
+          "FundName",
+          "InvestmentType",
+          "SalaryPercentageInvested",
+          "UserDetailId"
+        ],
+        "type": "object",
+        "properties": {
+          "Id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "UserDetailId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "FundName": {
+            "maxLength": 100,
+            "minLength": 1,
+            "type": "string"
+          },
+          "SalaryPercentageInvested": {
+            "type": "number",
+            "format": "double"
+          },
+          "InvestmentType": {
+            "maxLength": 10,
+            "minLength": 1,
+            "type": "string"
+          },
+          "InvestmentAmount": {
+            "type": "number",
+            "format": "double"
+          },
+          "Description": {
+            "maxLength": 500,
+            "type": "string",
+            "nullable": true
+          },
+          "CreatedDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "UpdatedDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "UserDetail": {
+            "$ref": "#/components/schemas/UserDetail"
+          }
+        },
+        "additionalProperties": false
+      },
+      "UserRole": {
+        "type": "object",
+        "properties": {
+          "UserId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "RoleId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "User": {
+            "$ref": "#/components/schemas/User"
+          },
+          "Role": {
+            "$ref": "#/components/schemas/Role"
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  }
+}

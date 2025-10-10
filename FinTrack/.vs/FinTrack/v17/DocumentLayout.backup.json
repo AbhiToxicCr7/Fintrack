@@ -1,0 +1,362 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\Personal\\Project\\FinTrack\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{EAF2E62D-3FD8-45D9-8570-D836B4FD77CB}|FinTrack\\AuthenticationServer.csproj|d:\\personal\\project\\fintrack\\fintrack\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EAF2E62D-3FD8-45D9-8570-D836B4FD77CB}|FinTrack\\AuthenticationServer.csproj|solutionrelative:fintrack\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EAF2E62D-3FD8-45D9-8570-D836B4FD77CB}|FinTrack\\AuthenticationServer.csproj|d:\\personal\\project\\fintrack\\fintrack\\dtos\\registerdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EAF2E62D-3FD8-45D9-8570-D836B4FD77CB}|FinTrack\\AuthenticationServer.csproj|solutionrelative:fintrack\\dtos\\registerdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EAF2E62D-3FD8-45D9-8570-D836B4FD77CB}|FinTrack\\AuthenticationServer.csproj|d:\\personal\\project\\fintrack\\fintrack\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EAF2E62D-3FD8-45D9-8570-D836B4FD77CB}|FinTrack\\AuthenticationServer.csproj|solutionrelative:fintrack\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EAF2E62D-3FD8-45D9-8570-D836B4FD77CB}|FinTrack\\AuthenticationServer.csproj|d:\\personal\\project\\fintrack\\fintrack\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EAF2E62D-3FD8-45D9-8570-D836B4FD77CB}|FinTrack\\AuthenticationServer.csproj|solutionrelative:fintrack\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EAF2E62D-3FD8-45D9-8570-D836B4FD77CB}|FinTrack\\AuthenticationServer.csproj|d:\\personal\\project\\fintrack\\fintrack\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EAF2E62D-3FD8-45D9-8570-D836B4FD77CB}|FinTrack\\AuthenticationServer.csproj|solutionrelative:fintrack\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EAF2E62D-3FD8-45D9-8570-D836B4FD77CB}|FinTrack\\AuthenticationServer.csproj|d:\\personal\\project\\fintrack\\fintrack\\models\\userdetail.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EAF2E62D-3FD8-45D9-8570-D836B4FD77CB}|FinTrack\\AuthenticationServer.csproj|solutionrelative:fintrack\\models\\userdetail.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EAF2E62D-3FD8-45D9-8570-D836B4FD77CB}|FinTrack\\AuthenticationServer.csproj|d:\\personal\\project\\fintrack\\fintrack\\controllers\\userdetailcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EAF2E62D-3FD8-45D9-8570-D836B4FD77CB}|FinTrack\\AuthenticationServer.csproj|solutionrelative:fintrack\\controllers\\userdetailcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EAF2E62D-3FD8-45D9-8570-D836B4FD77CB}|FinTrack\\AuthenticationServer.csproj|d:\\personal\\project\\fintrack\\fintrack\\controllers\\jwkscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EAF2E62D-3FD8-45D9-8570-D836B4FD77CB}|FinTrack\\AuthenticationServer.csproj|solutionrelative:fintrack\\controllers\\jwkscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EAF2E62D-3FD8-45D9-8570-D836B4FD77CB}|FinTrack\\AuthenticationServer.csproj|d:\\personal\\project\\fintrack\\fintrack\\dtos\\profiledto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EAF2E62D-3FD8-45D9-8570-D836B4FD77CB}|FinTrack\\AuthenticationServer.csproj|solutionrelative:fintrack\\dtos\\profiledto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EAF2E62D-3FD8-45D9-8570-D836B4FD77CB}|FinTrack\\AuthenticationServer.csproj|d:\\personal\\project\\fintrack\\fintrack\\dtos\\logindto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EAF2E62D-3FD8-45D9-8570-D836B4FD77CB}|FinTrack\\AuthenticationServer.csproj|solutionrelative:fintrack\\dtos\\logindto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EAF2E62D-3FD8-45D9-8570-D836B4FD77CB}|FinTrack\\AuthenticationServer.csproj|d:\\personal\\project\\fintrack\\fintrack\\dtos\\userdetaildto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EAF2E62D-3FD8-45D9-8570-D836B4FD77CB}|FinTrack\\AuthenticationServer.csproj|solutionrelative:fintrack\\dtos\\userdetaildto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EAF2E62D-3FD8-45D9-8570-D836B4FD77CB}|FinTrack\\AuthenticationServer.csproj|d:\\personal\\project\\fintrack\\fintrack\\controllers\\testcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EAF2E62D-3FD8-45D9-8570-D836B4FD77CB}|FinTrack\\AuthenticationServer.csproj|solutionrelative:fintrack\\controllers\\testcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EAF2E62D-3FD8-45D9-8570-D836B4FD77CB}|FinTrack\\AuthenticationServer.csproj|d:\\personal\\project\\fintrack\\fintrack\\migrations\\20250914121020_adduserdetailandinvestmenttables.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EAF2E62D-3FD8-45D9-8570-D836B4FD77CB}|FinTrack\\AuthenticationServer.csproj|solutionrelative:fintrack\\migrations\\20250914121020_adduserdetailandinvestmenttables.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EAF2E62D-3FD8-45D9-8570-D836B4FD77CB}|FinTrack\\AuthenticationServer.csproj|d:\\personal\\project\\fintrack\\fintrack\\services\\keyrotationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EAF2E62D-3FD8-45D9-8570-D836B4FD77CB}|FinTrack\\AuthenticationServer.csproj|solutionrelative:fintrack\\services\\keyrotationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EAF2E62D-3FD8-45D9-8570-D836B4FD77CB}|FinTrack\\AuthenticationServer.csproj|d:\\personal\\project\\fintrack\\fintrack\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{EAF2E62D-3FD8-45D9-8570-D836B4FD77CB}|FinTrack\\AuthenticationServer.csproj|solutionrelative:fintrack\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EAF2E62D-3FD8-45D9-8570-D836B4FD77CB}|FinTrack\\AuthenticationServer.csproj|d:\\personal\\project\\fintrack\\fintrack\\dtos\\updateprofiledto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EAF2E62D-3FD8-45D9-8570-D836B4FD77CB}|FinTrack\\AuthenticationServer.csproj|solutionrelative:fintrack\\dtos\\updateprofiledto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EAF2E62D-3FD8-45D9-8570-D836B4FD77CB}|FinTrack\\AuthenticationServer.csproj|d:\\personal\\project\\fintrack\\fintrack\\models\\signingkey.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EAF2E62D-3FD8-45D9-8570-D836B4FD77CB}|FinTrack\\AuthenticationServer.csproj|solutionrelative:fintrack\\models\\signingkey.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EAF2E62D-3FD8-45D9-8570-D836B4FD77CB}|FinTrack\\AuthenticationServer.csproj|d:\\personal\\project\\fintrack\\fintrack\\models\\client.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EAF2E62D-3FD8-45D9-8570-D836B4FD77CB}|FinTrack\\AuthenticationServer.csproj|solutionrelative:fintrack\\models\\client.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EAF2E62D-3FD8-45D9-8570-D836B4FD77CB}|FinTrack\\AuthenticationServer.csproj|d:\\personal\\project\\fintrack\\fintrack\\models\\loginrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EAF2E62D-3FD8-45D9-8570-D836B4FD77CB}|FinTrack\\AuthenticationServer.csproj|solutionrelative:fintrack\\models\\loginrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 14,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:130:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:131:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:131:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:135:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:134:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:136:0:{13b12e3e-c1b4-4539-9371-4fe9a0d523fc}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "UserDetail.cs",
+              "DocumentMoniker": "D:\\Personal\\Project\\FinTrack\\FinTrack\\Models\\UserDetail.cs",
+              "RelativeDocumentMoniker": "FinTrack\\Models\\UserDetail.cs",
+              "ToolTip": "D:\\Personal\\Project\\FinTrack\\FinTrack\\Models\\UserDetail.cs",
+              "RelativeToolTip": "FinTrack\\Models\\UserDetail.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-15T17:05:59.048Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "UserDetailDTO.cs",
+              "DocumentMoniker": "D:\\Personal\\Project\\FinTrack\\FinTrack\\DTOs\\UserDetailDTO.cs",
+              "RelativeDocumentMoniker": "FinTrack\\DTOs\\UserDetailDTO.cs",
+              "ToolTip": "D:\\Personal\\Project\\FinTrack\\FinTrack\\DTOs\\UserDetailDTO.cs",
+              "RelativeToolTip": "FinTrack\\DTOs\\UserDetailDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-15T17:05:27.621Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "UserDetailController.cs",
+              "DocumentMoniker": "D:\\Personal\\Project\\FinTrack\\FinTrack\\Controllers\\UserDetailController.cs",
+              "RelativeDocumentMoniker": "FinTrack\\Controllers\\UserDetailController.cs",
+              "ToolTip": "D:\\Personal\\Project\\FinTrack\\FinTrack\\Controllers\\UserDetailController.cs",
+              "RelativeToolTip": "FinTrack\\Controllers\\UserDetailController.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAAwAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-14T12:56:06.368Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "20250914121020_AddUserDetailAndInvestmentTables.cs",
+              "DocumentMoniker": "D:\\Personal\\Project\\FinTrack\\FinTrack\\Migrations\\20250914121020_AddUserDetailAndInvestmentTables.cs",
+              "RelativeDocumentMoniker": "FinTrack\\Migrations\\20250914121020_AddUserDetailAndInvestmentTables.cs",
+              "ToolTip": "D:\\Personal\\Project\\FinTrack\\FinTrack\\Migrations\\20250914121020_AddUserDetailAndInvestmentTables.cs",
+              "RelativeToolTip": "FinTrack\\Migrations\\20250914121020_AddUserDetailAndInvestmentTables.cs",
+              "ViewState": "AgIAAEUAAAAAAAAAAAAQwAwAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-14T12:10:20.181Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "JWKSController.cs",
+              "DocumentMoniker": "D:\\Personal\\Project\\FinTrack\\FinTrack\\Controllers\\JWKSController.cs",
+              "RelativeDocumentMoniker": "FinTrack\\Controllers\\JWKSController.cs",
+              "ToolTip": "D:\\Personal\\Project\\FinTrack\\FinTrack\\Controllers\\JWKSController.cs",
+              "RelativeToolTip": "FinTrack\\Controllers\\JWKSController.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAAuwC0AAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-23T10:11:54.466Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "AuthController.cs",
+              "DocumentMoniker": "D:\\Personal\\Project\\FinTrack\\FinTrack\\Controllers\\AuthController.cs",
+              "RelativeDocumentMoniker": "FinTrack\\Controllers\\AuthController.cs",
+              "ToolTip": "D:\\Personal\\Project\\FinTrack\\FinTrack\\Controllers\\AuthController.cs",
+              "RelativeToolTip": "FinTrack\\Controllers\\AuthController.cs",
+              "ViewState": "AgIAADIAAAAAAAAAAAAYwB0AAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-18T10:17:18.755Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "UserController.cs",
+              "DocumentMoniker": "D:\\Personal\\Project\\FinTrack\\FinTrack\\Controllers\\UserController.cs",
+              "RelativeDocumentMoniker": "FinTrack\\Controllers\\UserController.cs",
+              "ToolTip": "D:\\Personal\\Project\\FinTrack\\FinTrack\\Controllers\\UserController.cs",
+              "RelativeToolTip": "FinTrack\\Controllers\\UserController.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAmwBEAAAA7AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-15T11:06:28.52Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "KeyRotationService.cs",
+              "DocumentMoniker": "D:\\Personal\\Project\\FinTrack\\FinTrack\\Services\\KeyRotationService.cs",
+              "RelativeDocumentMoniker": "FinTrack\\Services\\KeyRotationService.cs",
+              "ToolTip": "D:\\Personal\\Project\\FinTrack\\FinTrack\\Services\\KeyRotationService.cs",
+              "RelativeToolTip": "FinTrack\\Services\\KeyRotationService.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAIBJwEAAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-08T11:41:12.139Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ApplicationDbContext.cs",
+              "DocumentMoniker": "D:\\Personal\\Project\\FinTrack\\FinTrack\\Data\\ApplicationDbContext.cs",
+              "RelativeDocumentMoniker": "FinTrack\\Data\\ApplicationDbContext.cs",
+              "ToolTip": "D:\\Personal\\Project\\FinTrack\\FinTrack\\Data\\ApplicationDbContext.cs",
+              "RelativeToolTip": "FinTrack\\Data\\ApplicationDbContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-08T08:36:20.933Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "LoginDTO.cs",
+              "DocumentMoniker": "D:\\Personal\\Project\\FinTrack\\FinTrack\\DTOs\\LoginDTO.cs",
+              "RelativeDocumentMoniker": "FinTrack\\DTOs\\LoginDTO.cs",
+              "ToolTip": "D:\\Personal\\Project\\FinTrack\\FinTrack\\DTOs\\LoginDTO.cs",
+              "RelativeToolTip": "FinTrack\\DTOs\\LoginDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAABLAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-08T05:18:38.121Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "ProfileDTO.cs",
+              "DocumentMoniker": "D:\\Personal\\Project\\FinTrack\\FinTrack\\DTOs\\ProfileDTO.cs",
+              "RelativeDocumentMoniker": "FinTrack\\DTOs\\ProfileDTO.cs",
+              "ToolTip": "D:\\Personal\\Project\\FinTrack\\FinTrack\\DTOs\\ProfileDTO.cs",
+              "RelativeToolTip": "FinTrack\\DTOs\\ProfileDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-08T05:16:39.502Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "UpdateProfileDTO.cs",
+              "DocumentMoniker": "D:\\Personal\\Project\\FinTrack\\FinTrack\\DTOs\\UpdateProfileDTO.cs",
+              "RelativeDocumentMoniker": "FinTrack\\DTOs\\UpdateProfileDTO.cs",
+              "ToolTip": "D:\\Personal\\Project\\FinTrack\\FinTrack\\DTOs\\UpdateProfileDTO.cs",
+              "RelativeToolTip": "FinTrack\\DTOs\\UpdateProfileDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-08T05:15:34.272Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "RegisterDTO.cs",
+              "DocumentMoniker": "D:\\Personal\\Project\\FinTrack\\FinTrack\\DTOs\\RegisterDTO.cs",
+              "RelativeDocumentMoniker": "FinTrack\\DTOs\\RegisterDTO.cs",
+              "ToolTip": "D:\\Personal\\Project\\FinTrack\\FinTrack\\DTOs\\RegisterDTO.cs",
+              "RelativeToolTip": "FinTrack\\DTOs\\RegisterDTO.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAxwBMAAAA5AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-08T05:14:12.605Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "SigningKey.cs",
+              "DocumentMoniker": "D:\\Personal\\Project\\FinTrack\\FinTrack\\Models\\SigningKey.cs",
+              "RelativeDocumentMoniker": "FinTrack\\Models\\SigningKey.cs",
+              "ToolTip": "D:\\Personal\\Project\\FinTrack\\FinTrack\\Models\\SigningKey.cs",
+              "RelativeToolTip": "FinTrack\\Models\\SigningKey.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAAwA4AAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-08T05:07:17.86Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "Client.cs",
+              "DocumentMoniker": "D:\\Personal\\Project\\FinTrack\\FinTrack\\Models\\Client.cs",
+              "RelativeDocumentMoniker": "FinTrack\\Models\\Client.cs",
+              "ToolTip": "D:\\Personal\\Project\\FinTrack\\FinTrack\\Models\\Client.cs",
+              "RelativeToolTip": "FinTrack\\Models\\Client.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-08T05:02:26.913Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "LoginRequest.cs",
+              "DocumentMoniker": "D:\\Personal\\Project\\FinTrack\\FinTrack\\Models\\LoginRequest.cs",
+              "RelativeDocumentMoniker": "FinTrack\\Models\\LoginRequest.cs",
+              "ToolTip": "D:\\Personal\\Project\\FinTrack\\FinTrack\\Models\\LoginRequest.cs",
+              "RelativeToolTip": "FinTrack\\Models\\LoginRequest.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-07T09:50:25.401Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "TestController.cs",
+              "DocumentMoniker": "D:\\Personal\\Project\\FinTrack\\FinTrack\\Controllers\\TestController.cs",
+              "RelativeDocumentMoniker": "FinTrack\\Controllers\\TestController.cs",
+              "ToolTip": "D:\\Personal\\Project\\FinTrack\\FinTrack\\Controllers\\TestController.cs",
+              "RelativeToolTip": "FinTrack\\Controllers\\TestController.cs",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAAwAoAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-04T17:55:35.236Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "D:\\Personal\\Project\\FinTrack\\FinTrack\\appsettings.json",
+              "RelativeDocumentMoniker": "FinTrack\\appsettings.json",
+              "ToolTip": "D:\\Personal\\Project\\FinTrack\\FinTrack\\appsettings.json",
+              "RelativeToolTip": "FinTrack\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-08-04T17:48:32.081Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\Personal\\Project\\FinTrack\\FinTrack\\Program.cs",
+              "RelativeDocumentMoniker": "FinTrack\\Program.cs",
+              "ToolTip": "D:\\Personal\\Project\\FinTrack\\FinTrack\\Program.cs",
+              "RelativeToolTip": "FinTrack\\Program.cs",
+              "ViewState": "AgIAABgAAAAAAAAAAAAAACgAAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-04T16:07:05.11Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
