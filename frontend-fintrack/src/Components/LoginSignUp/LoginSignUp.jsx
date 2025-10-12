@@ -18,6 +18,7 @@ export const LoginSignUp = () => {
   const [password, setPassword] = useState('');
   const [action, setAction] = useState("Login");
   const [profile, setProfile] = useState(null);
+  //var userID= null;
 
   const handleFirstNameChange = (value) => {
         setFirstName(value);
@@ -60,6 +61,7 @@ export const LoginSignUp = () => {
         }
         var url = "https://localhost:44389/api/User/Register";
         axios.post(url, data).then((result) => {
+            //userID = result.Data.userId; 
             alert(result.data);
         }).catch((error) => {
             alert(error);
@@ -73,15 +75,18 @@ export const LoginSignUp = () => {
             UserName : userName,
             Password : password,
             ClientId : "Client1"
+            //UserId : userID
         } 
 
         try {
             const response = await axios.post(url, data);
             // Assuming token is in response.data.token or response.data (adjust as per your API)
-            const token = response.data.token || response.data;
+            const token = response.data.Token || response.data;
+            const userID = response.data.UserID || response.data;
             // Call GetProfile API with JWT token
             localStorage.setItem('authToken',token);
-            navigate('/dashboard');
+            localStorage.setItem('loggedinUserID',userID);
+            navigate('/UserDetails');
         } catch (error) {
             alert("Login failed or unable to fetch profile.");
         }
