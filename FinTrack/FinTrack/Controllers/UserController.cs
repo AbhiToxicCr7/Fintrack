@@ -67,7 +67,13 @@ namespace FinTrack.Controllers
                 await _context.SaveChangesAsync();
             }
 
-            return CreatedAtAction(nameof(GetProfile), new { id = newUser.Id }, new { message = "User registered successfully." });
+            //return CreatedAtAction(nameof(GetProfile), new { id = newUser.Id }, new { message = "User registered successfully." });
+
+            return Created($"api/User/{newUser.Id}", new
+            {
+                userId=newUser.Id,
+                message = "User Registered"
+            });
         }
 
         [HttpGet("GetProfile")]
@@ -90,6 +96,9 @@ namespace FinTrack.Controllers
                 Email = user.Email,
                 Firstname = user.FirstName,
                 Lastname = user?.LastName,
+                PhoneNumber = user.PhoneNumber,
+                Address = user.Address,
+                UserName = user.UserName,
                 Roles = user.UserRole.Select(ur => ur.Role.Name).ToList(),
             };
 

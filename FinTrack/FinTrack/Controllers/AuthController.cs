@@ -59,7 +59,11 @@ namespace FinTrack.Controllers
             //As of now password is validated
             var token = GenerateJWTToken(user, client);
 
-            return Ok(token);
+            return Ok(new
+            {
+                Token = token,
+                UserID = user.Id
+            });
         }
 
         private string GenerateJWTToken(User user, Client client)

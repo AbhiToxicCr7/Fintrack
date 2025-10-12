@@ -1,7 +1,10 @@
-﻿using FinTrack.Data;
+﻿using AuthenticationServer.DTOs;
+using FinTrack.Data;
+using FinTrack.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using ResourceServer.Models;
 
 namespace AuthenticationServer.Controllers
@@ -12,6 +15,12 @@ namespace AuthenticationServer.Controllers
     public class UserDetailController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
+
+        public UserDetailController(ApplicationDbContext context)
+        {
+            _context = context;
+        }
+
         [HttpGet]
         public ActionResult<List<UserDetail>> GetAllUserDetails()
         {
@@ -32,17 +41,36 @@ namespace AuthenticationServer.Controllers
             return Ok(userDetail);
         }
 
-        // Creates a new product.
         [HttpPost("Add")]
-        public IActionResult AddUserDetail([FromBody] UserDetail userDetail)
+        public async Task<IActionResult> AddUserDetail([FromBody] UserDetailDTO userDetailDTO)
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest(ModelState);
+                return ValidationProblem(ModelState);
             }
-            _context.UserDetails.Add(userDetail);
+            var userExists = await _context.Users.AnyAsync(u => u.Id == userDetailDTO.UserId);
+            if (!userExists)
+                return BadRequest(new { message = $"UserId {userDetailDTO.UserId} does not exist." });
 
-            return CreatedAtAction(nameof(UserDetail), new { message = "UserDetails added successfully" });
+            var alreadyHas = await _context.UserDetails.AnyAsync(ud => ud.UserId == userDetailDTO.UserId);
+            if (alreadyHas)
+                return Conflict(new { message = $"UserId {userDetailDTO.UserId} already has a UserDetail." });
+
+            var newUserDetail = new UserDetail
+            {
+                UserId = userDetailDTO.UserId,
+                Profession = userDetailDTO.Profession,
+                JobTitle = userDetailDTO.JobTitle,
+                AnnualSalary = userDetailDTO.AnnualSalary,
+                MonthlyIncome = userDetailDTO.MonthlyIncome,
+                MonthlyExpenses = userDetailDTO.MonthlyExpenses,
+                MonthlyInvestment = userDetailDTO.MonthlyInvestment
+            };
+
+            _context.UserDetails.Add(newUserDetail);
+            await _context.SaveChangesAsync();
+
+            return Ok();
         }
     }
 }

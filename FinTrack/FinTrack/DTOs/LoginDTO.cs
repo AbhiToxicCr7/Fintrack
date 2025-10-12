@@ -21,5 +21,8 @@ namespace FinTrack.DTOs
 
         [Required(ErrorMessage = "ClientId is required.")]
         public string ClientId { get; set; }
+
+        [Required(ErrorMessage = "UserId is required.")]
+        public int UserId {  get; set; }
     }
 }
