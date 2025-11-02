@@ -189,7 +189,7 @@ export const UserDetails = () => {
                     />
                     <input
                         type="text"
-                        placeholder="Email"
+                        placeholder="AnnualSalary"
                         value={annualSalary}
                         onChange={(e)=> handleAnnualSalaryChange(e.target.value)}
                     />
