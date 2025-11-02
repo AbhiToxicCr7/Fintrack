@@ -5,6 +5,7 @@ import './Dashboard.css';
 export const Dashboard = () => {
     const [profile, setProfile] = useState(null);
     const token = localStorage.getItem('authToken');
+    //frontend commit test
 
     useEffect(()=>{
         if(!token) return;
