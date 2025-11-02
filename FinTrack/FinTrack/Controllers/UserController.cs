@@ -29,6 +29,7 @@ namespace FinTrack.Controllers
                 return BadRequest(ModelState);
             }
 
+            //Test comment to check repo
             var existingUser = _context.Users.FirstOrDefault(u => u.UserName.ToLower() == registerDTO.UserName.ToLower());
 
             if (existingUser != null)
