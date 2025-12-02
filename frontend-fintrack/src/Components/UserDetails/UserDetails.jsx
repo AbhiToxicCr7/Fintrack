@@ -43,9 +43,6 @@ export const UserDetails = () => {
     const [profession, setProfession] = useState("");
     const [jobTitle, setJobTitle] = useState("");
     const [annualSalary, setAnnualSalary] = useState("");
-    const [monthlyIncome, setMonthlyIncome] = useState("");
-    const [monthlyExpense, setMonthlyExpenses] = useState("");
-    const [monthlyInvestments, setMonthlymonthlyInvestments] = useState("");
 
     const handleProfessionChange = (value) => {
         setProfession(value);
@@ -59,17 +56,6 @@ export const UserDetails = () => {
         setAnnualSalary(value);
     }
 
-    const handleMonthlyIncomeChange = (value) => {
-        setMonthlyIncome(value);
-    }
-
-    const handleMonthlyExpensesChange = (value) => {
-        setMonthlyExpenses(value);
-    }
-
-    const handleMonthlyInvestmentsChange = (value) => {
-        setMonthlymonthlyInvestments(value);
-    }
 
     const handleUserDetails = () => {
         const url = "https://localhost:44389/api/UserDetail/Add";
@@ -78,10 +64,7 @@ export const UserDetails = () => {
             UserId : loggedUserID,
             Profession : profession,
             JobTitle : jobTitle,
-            AnnualSalary : annualSalary,
-            MonthlyIncome : monthlyIncome,
-            MonthlyExpenses : monthlyExpense,
-            MonthlyInvestment : monthlyInvestments
+            AnnualSalary : annualSalary
         }
 
         axios.post(url, data,{
@@ -192,26 +175,6 @@ export const UserDetails = () => {
                         placeholder="AnnualSalary"
                         value={annualSalary}
                         onChange={(e)=> handleAnnualSalaryChange(e.target.value)}
-                    />
-                    <input
-                        type="text"
-                        placeholder="MonthlyIncome"
-                        value={monthlyIncome}
-                        onChange={(e)=> handleMonthlyIncomeChange(e.target.value)}
-                    />
-                </div>
-                <div className="input2">
-                    <input
-                        type="text"
-                        placeholder="MonthlyExpenses"
-                        value={monthlyExpense}
-                        onChange={(e)=> handleMonthlyExpensesChange(e.target.value)}
-                    />
-                    <input
-                        type="text"
-                        placeholder="MonthlyInvestments"
-                        value={monthlyInvestments}
-                        onChange={(e)=> handleMonthlyInvestmentsChange(e.target.value)}
                     />
                 </div>
             </div>

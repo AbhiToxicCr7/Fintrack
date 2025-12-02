@@ -83,10 +83,18 @@ export const LoginSignUp = () => {
             // Assuming token is in response.data.token or response.data (adjust as per your API)
             const token = response.data.Token || response.data;
             const userID = response.data.UserID || response.data;
+            const hasUserDetail = response.data.HasUserDetail;
             // Call GetProfile API with JWT token
             localStorage.setItem('authToken',token);
             localStorage.setItem('loggedinUserID',userID);
-            navigate('/UserDetails');
+            if(hasUserDetail)
+            {
+              navigate('/Dashboard');
+            }
+            else
+            {
+              navigate('/UserDetails');
+            }
         } catch (error) {
             alert("Login failed or unable to fetch profile.");
         }

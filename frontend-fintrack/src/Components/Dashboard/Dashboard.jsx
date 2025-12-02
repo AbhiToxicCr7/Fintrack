@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './Dashboard.css';
+import Header from './Header/Header';
+import Home from './Home/Home.jsx';
+import Sidebar from './Sidebar/Sidebar.jsx';
 
 export const Dashboard = () => {
     const [profile, setProfile] = useState(null);
@@ -30,11 +33,10 @@ export const Dashboard = () => {
     }
 
     return (
-        <div className="dashboard" style={{ padding: 24 }}>
-            <h2>Dashboard</h2>
-            <p>Email: {profile.Email}</p>
-            <p>First Name: {profile.Firstname}</p>
-            <p>Last Name: {profile.Lastname}</p>
+        <div className="grid-container-dashboard">
+            <Header></Header>
+            <Sidebar></Sidebar>
+            <Home></Home>
         </div>
     );
 };
