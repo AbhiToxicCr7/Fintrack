@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using FinTrack.Models;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ResourceServer.Models
@@ -9,16 +10,16 @@ namespace ResourceServer.Models
         public int Id { get; set; }
 
         [Required]
-        [ForeignKey("UserDetail")]
-        public int UserDetailId { get; set; }
+        [ForeignKey("UserExpense")]
+        public int UserExpenseId { get; set; }
 
         [Required]
         [MaxLength(100)]
         public string FundName { get; set; }
 
-        [Required]
-        [Column(TypeName = "decimal(5,2)")]
-        public decimal SalaryPercentageInvested { get; set; }
+        //[Required]
+        //[Column(TypeName = "decimal(5,2)")]
+        //public decimal SalaryPercentageInvested { get; set; }
 
         [Required]
         [MaxLength(10)]
@@ -35,6 +36,6 @@ namespace ResourceServer.Models
         public DateTime UpdatedDate { get; set; } = DateTime.UtcNow;
 
         // Navigation property
-        public UserDetail UserDetail { get; set; }
+        public UserExpense UserExpense { get; set; }
     }
 }

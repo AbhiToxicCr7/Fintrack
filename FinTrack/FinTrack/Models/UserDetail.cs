@@ -28,14 +28,6 @@ namespace ResourceServer.Models
         [Column(TypeName = "decimal(18,2)")]
         public decimal MonthlySalary => AnnualSalary / 12m;
 
-        [Column(TypeName = "decimal(18,2)")]
-        public decimal MonthlyIncome { get; set; }
-
-        [Column(TypeName = "decimal(18,2)")]
-        public decimal MonthlyExpenses { get; set; }
-
-        [Column(TypeName = "decimal(18,2)")]
-        public decimal MonthlyInvestment { get; set; }
 
         public DateTime CreatedDate { get; set; } = DateTime.UtcNow;
         public DateTime UpdatedDate { get; set; } = DateTime.UtcNow;
@@ -43,7 +35,5 @@ namespace ResourceServer.Models
         [JsonIgnore]      // Prevent model binding expecting a 'user' field
         public User User { get; set; }
 
-        [JsonIgnore]
-        public ICollection<UserInvestment> UserInvestments { get; set; } = new List<UserInvestment>();
     }
 }

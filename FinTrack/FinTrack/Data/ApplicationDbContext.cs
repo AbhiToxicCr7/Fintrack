@@ -1,4 +1,5 @@
-﻿using FinTrack.Models;
+﻿using AuthenticationServer.Models;
+using FinTrack.Models;
 using Microsoft.EntityFrameworkCore;
 using ResourceServer.Models;
 
@@ -18,6 +19,7 @@ namespace FinTrack.Data
             // Configure the UserRole entity as a join table for User and Role.
             modelBuilder.Entity<UserRole>()
                 .HasKey(ur => new { ur.UserId, ur.RoleId }); // Composite primary key.
+
             //Defines the many-to-many relationship between User and Role.
             modelBuilder.Entity<UserRole>()
                 .HasOne(ur => ur.User)
@@ -35,33 +37,32 @@ namespace FinTrack.Data
                 .HasForeignKey<UserDetail>(ud => ud.UserId)
                 .OnDelete(DeleteBehavior.Cascade);
 
-            // Configure one-to-many relationship between UserDetail and UserInvestment
+            // UserInvestment is the one to many child of user Expense
             modelBuilder.Entity<UserInvestment>()
-                .HasOne(ui => ui.UserDetail)
-                .WithMany(ud => ud.UserInvestments)
-                .HasForeignKey(ui => ui.UserDetailId)
+                .HasOne(ui => ui.UserExpense)
+                .WithMany(ue => ue.UserInvestments)
+                .HasForeignKey(ui => ui.UserExpenseId)
                 .OnDelete(DeleteBehavior.Cascade);
+
+            //UserExpense is a one to many child of User
+            modelBuilder.Entity<UserExpense>()
+                .HasOne(ue=>ue.User)
+                .WithMany(u=>u.UserExpenses)
+                .HasForeignKey(ue=>ue.UserId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            //UserIncome is a one to many child of User
+            modelBuilder.Entity<UserIncome>()
+               .HasOne(ue => ue.User)
+               .WithMany(u => u.UserIncomes)
+               .HasForeignKey(ue => ue.UserId)
+               .OnDelete(DeleteBehavior.Cascade);
 
             // Configure decimal precision
             modelBuilder.Entity<UserDetail>()
                 .Property(e => e.AnnualSalary)
                 .HasPrecision(18, 2);
-            
-            modelBuilder.Entity<UserDetail>()
-                .Property(e => e.MonthlyIncome)
-                .HasPrecision(18, 2);
-            
-            modelBuilder.Entity<UserDetail>()
-                .Property(e => e.MonthlyExpenses)
-                .HasPrecision(18, 2);
-            
-            modelBuilder.Entity<UserDetail>()
-                .Property(e => e.MonthlyInvestment)
-                .HasPrecision(18, 2);
 
-            modelBuilder.Entity<UserInvestment>()
-                .Property(e => e.SalaryPercentageInvested)
-                .HasPrecision(5, 2);
             
             modelBuilder.Entity<UserInvestment>()
                 .Property(e => e.InvestmentAmount)
@@ -110,5 +111,7 @@ namespace FinTrack.Data
         public DbSet<UserDetail> UserDetails { get; set; }
         // DbSet representing the UserInvestments table.
         public DbSet<UserInvestment> UserInvestments { get; set; }
+        public DbSet<UserExpense> UserExpenses { get; set; }
+        public DbSet<UserIncome> UserIncomes { get; set; }
     }
 }

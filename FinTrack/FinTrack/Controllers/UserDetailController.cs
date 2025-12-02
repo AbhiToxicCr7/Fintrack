@@ -61,10 +61,10 @@ namespace AuthenticationServer.Controllers
                 UserId = userDetailDTO.UserId,
                 Profession = userDetailDTO.Profession,
                 JobTitle = userDetailDTO.JobTitle,
-                AnnualSalary = userDetailDTO.AnnualSalary,
-                MonthlyIncome = userDetailDTO.MonthlyIncome,
-                MonthlyExpenses = userDetailDTO.MonthlyExpenses,
-                MonthlyInvestment = userDetailDTO.MonthlyInvestment
+                AnnualSalary = userDetailDTO.AnnualSalary
+                //MonthlyIncome = userDetailDTO.MonthlyIncome,
+                //MonthlyExpenses = userDetailDTO.MonthlyExpenses,
+                //MonthlyInvestment = userDetailDTO.MonthlyInvestment
             };
 
             _context.UserDetails.Add(newUserDetail);

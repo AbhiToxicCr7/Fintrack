@@ -1,4 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
+using AuthenticationServer.Models;
 using FinTrack.Models;
 using ResourceServer.Models;
 
@@ -26,6 +28,11 @@ namespace FinTrack.Models
         // Navigation properties
         public ICollection<UserRole> UserRole { get; set; }
         public UserDetail? UserDetail { get; set; }
+        [JsonIgnore]
+        public ICollection<UserExpense> UserExpenses { get; set; } = new List<UserExpense>();
+
+        [JsonIgnore]
+        public ICollection<UserIncome> UserIncomes { get; set; } = new List<UserIncome>();
 
         // Computed property for full name
         public string FullName => $"{FirstName} {LastName}".Trim();

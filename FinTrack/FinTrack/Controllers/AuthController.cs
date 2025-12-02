@@ -1,4 +1,5 @@
-﻿using FinTrack.Data;
+﻿using AuthenticationServer.DTOs;
+using FinTrack.Data;
 using FinTrack.DTOs;
 using FinTrack.Models;
 using Microsoft.AspNetCore.Http;
@@ -56,13 +57,16 @@ namespace FinTrack.Controllers
                 return Unauthorized("Inavalid Password!");
             }
 
+            bool hasUserDetail = await _context.UserDetails.AnyAsync(x => x.UserId == user.Id);
+
             //As of now password is validated
             var token = GenerateJWTToken(user, client);
 
             return Ok(new
             {
                 Token = token,
-                UserID = user.Id
+                UserID = user.Id,
+                HasUserDetail = hasUserDetail,
             });
         }
 
