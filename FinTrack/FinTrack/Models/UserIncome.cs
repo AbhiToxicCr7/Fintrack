@@ -28,6 +28,8 @@ namespace AuthenticationServer.Models
 
         public bool IsActive { get; set; } = true;
 
+        public DateTime Date { get; set; }
+
         // Clarification: Storing TotalExpenses on each row duplicates data.
         // If you truly need a persisted column, keep this.
         // Prefer computing total per user via a query instead (see notes below).

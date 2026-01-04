@@ -37,5 +37,7 @@ namespace ResourceServer.Models
 
         // Navigation property
         public UserExpense UserExpense { get; set; }
+
+        public DateTime Date { get; set; }
     }
 }

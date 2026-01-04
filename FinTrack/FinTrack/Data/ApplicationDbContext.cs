@@ -73,6 +73,12 @@ namespace FinTrack.Data
                 .ToTable(t => t.HasCheckConstraint("CK_InvestmentType", 
                     "[InvestmentType] IN ('Stock', 'SIP')"));
 
+            // Store enum as string in the database with max length 100
+            modelBuilder.Entity<UserExpense>()
+                .Property(e => e.Category)
+                .HasConversion<string>()
+                .HasMaxLength(100);
+
             // Seed initial data for Roles, Users, Clients, and UserRoles.
             modelBuilder.Entity<Role>().HasData(
                 new Role { Id = 1, Name = "Admin", Description = "Admin Role" },

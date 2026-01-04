@@ -24,10 +24,11 @@ namespace FinTrack.Models
         public string Currency { get; set; }  // e.g. "USD", "INR"
 
         [Required]
-        [MaxLength(100)]
-        public string Category { get; set; }  // e.g. "Food", "Transport"
+        public CategoryTypes Category { get; set; }  // e.g. "Food", "Transport"
 
         public bool IsActive { get; set; } = true;
+
+        public DateTime Date { get; set; }
 
         // Clarification: Storing TotalExpenses on each row duplicates data.
         // If you truly need a persisted column, keep this.
@@ -40,5 +41,20 @@ namespace FinTrack.Models
 
         [JsonIgnore]
         public ICollection<UserInvestment> UserInvestments { get; set; } = new List<UserInvestment>();
+    }
+
+    public enum CategoryTypes
+    {
+        Food,
+        Transport,
+        Housing,
+        Utilities,
+        Healthcare,
+        Education,
+        Entertainment,
+        Clothing,
+        Savings,
+        Investment,
+        Miscellaneous
     }
 }

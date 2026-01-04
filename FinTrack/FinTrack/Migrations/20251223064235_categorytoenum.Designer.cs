@@ -9,11 +9,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace FinTrack.Migrations
+namespace AuthenticationServer.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250914121020_AddUserDetailAndInvestmentTables")]
-    partial class AddUserDetailAndInvestmentTables
+    [Migration("20251223064235_categorytoenum")]
+    partial class categorytoenum
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,6 +24,43 @@ namespace FinTrack.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("AuthenticationServer.Models.UserIncome", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<decimal>("Amount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("Category")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("Currency")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("UserIncomes");
+                });
 
             modelBuilder.Entity("FinTrack.Models.Client", b =>
                 {
@@ -189,6 +226,43 @@ namespace FinTrack.Migrations
                     b.ToTable("Users");
                 });
 
+            modelBuilder.Entity("FinTrack.Models.UserExpense", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<decimal>("Amount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("Category")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("Currency")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("UserExpenses");
+                });
+
             modelBuilder.Entity("FinTrack.Models.UserRole", b =>
                 {
                     b.Property<int>("UserId")
@@ -224,18 +298,6 @@ namespace FinTrack.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<decimal>("MonthlyExpenses")
-                        .HasPrecision(18, 2)
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("MonthlyIncome")
-                        .HasPrecision(18, 2)
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("MonthlyInvestment")
-                        .HasPrecision(18, 2)
-                        .HasColumnType("decimal(18,2)");
-
                     b.Property<string>("Profession")
                         .IsRequired()
                         .HasMaxLength(100)
@@ -266,6 +328,9 @@ namespace FinTrack.Migrations
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Description")
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)");
@@ -284,24 +349,42 @@ namespace FinTrack.Migrations
                         .HasMaxLength(10)
                         .HasColumnType("nvarchar(10)");
 
-                    b.Property<decimal>("SalaryPercentageInvested")
-                        .HasPrecision(5, 2)
-                        .HasColumnType("decimal(5,2)");
-
                     b.Property<DateTime>("UpdatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("UserDetailId")
+                    b.Property<int>("UserExpenseId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserDetailId");
+                    b.HasIndex("UserExpenseId");
 
                     b.ToTable("UserInvestments", t =>
                         {
                             t.HasCheckConstraint("CK_InvestmentType", "[InvestmentType] IN ('Stock', 'SIP')");
                         });
+                });
+
+            modelBuilder.Entity("AuthenticationServer.Models.UserIncome", b =>
+                {
+                    b.HasOne("FinTrack.Models.User", "User")
+                        .WithMany("UserIncomes")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("FinTrack.Models.UserExpense", b =>
+                {
+                    b.HasOne("FinTrack.Models.User", "User")
+                        .WithMany("UserExpenses")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("FinTrack.Models.UserRole", b =>
@@ -336,13 +419,13 @@ namespace FinTrack.Migrations
 
             modelBuilder.Entity("ResourceServer.Models.UserInvestment", b =>
                 {
-                    b.HasOne("ResourceServer.Models.UserDetail", "UserDetail")
+                    b.HasOne("FinTrack.Models.UserExpense", "UserExpense")
                         .WithMany("UserInvestments")
-                        .HasForeignKey("UserDetailId")
+                        .HasForeignKey("UserExpenseId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("UserDetail");
+                    b.Navigation("UserExpense");
                 });
 
             modelBuilder.Entity("FinTrack.Models.Role", b =>
@@ -354,10 +437,14 @@ namespace FinTrack.Migrations
                 {
                     b.Navigation("UserDetail");
 
+                    b.Navigation("UserExpenses");
+
+                    b.Navigation("UserIncomes");
+
                     b.Navigation("UserRole");
                 });
 
-            modelBuilder.Entity("ResourceServer.Models.UserDetail", b =>
+            modelBuilder.Entity("FinTrack.Models.UserExpense", b =>
                 {
                     b.Navigation("UserInvestments");
                 });
