@@ -107,7 +107,7 @@ body{
 
 /* End Sidebar  */
 
-/* Main  */  
+/* Home  */  
 .main-container {
   grid-area: main;
   overflow-y: auto;
@@ -165,4 +165,51 @@ body{
   height: 300px;
 }
 
-/* End Main  */
+/* End Home  */
+
+/* EXPENSES */
+.main-expense-container {
+  grid-area: main;
+  overflow-y: auto;
+  padding: 20px 20px;
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.exp-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
+  margin: 15px 0;
+}
+
+.exp-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 8px 15px;    
+  border-radius: 5px;
+}
+
+.exp-card:first-child {
+  background-color: #ffa929;
+}
+
+.exp-card:nth-child(2) {
+  background-color: #08b846;
+}
+
+.exp-card:nth-child(3) {
+  background-color: #d50000;
+}
+
+.exp-card-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.exp-card-inner > .card_icon {
+  font-size: 25px;
+}
+
+/*End Expenses */

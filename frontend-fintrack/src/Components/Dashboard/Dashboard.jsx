@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './Dashboard.css';
-import Header from './Header/Header';
+import DashboardHeader from './Header/DashboardHeader.jsx';
 import Home from './Home/Home.jsx';
 import Sidebar from './Sidebar/Sidebar.jsx';
+import Expenses from './Expenses/Expenses.jsx';
 
 export const Dashboard = () => {
     const [profile, setProfile] = useState(null);
     const token = localStorage.getItem('authToken');
+    const [activeView, setActiveView] = useState('home'); // 'home' | 'expenses'
     //frontend commit test
 
     useEffect(()=>{
@@ -34,9 +36,10 @@ export const Dashboard = () => {
 
     return (
         <div className="grid-container-dashboard">
-            <Header></Header>
-            <Sidebar></Sidebar>
-            <Home></Home>
+            {activeView !== 'expenses' ? <DashboardHeader/> : null}
+            {/* <DashboardHeader></DashboardHeader> */}
+            <Sidebar onNavigate={setActiveView}></Sidebar>
+            {activeView === 'expenses' ? <Expenses /> : <Home />}
         </div>
     );
 };

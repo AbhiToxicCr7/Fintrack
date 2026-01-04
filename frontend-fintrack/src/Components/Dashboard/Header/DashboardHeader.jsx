@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import {BsJustify, BsSearch,BsBellFill,BsFillEnvelopeFill,BsPersonCircle} from 'react-icons/bs';
 
-function Header(){
+function DashboardHeader(){
     return (
         <header className='dashboard-header'>
             <div className='menu-icon'>
@@ -20,4 +20,4 @@ function Header(){
     )
 }
 
-export default Header
+export default DashboardHeader

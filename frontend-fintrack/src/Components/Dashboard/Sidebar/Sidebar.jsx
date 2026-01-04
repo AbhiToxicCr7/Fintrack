@@ -4,8 +4,10 @@ import { AiFillDashboard } from "react-icons/ai";
 import { TfiAngleDoubleDown, TfiAngleDoubleUp  } from "react-icons/tfi";
 import { HiDocumentChartBar } from "react-icons/hi2";
 import { IoSettings } from "react-icons/io5";
+import { NavLink } from "react-router-dom";
+import Expenses from '../Expenses/Expenses.jsx';
 
-function Sidebar(){
+function Sidebar({ onNavigate }){
     return (
         <aside id='sidebar'>
             <div className='sidebar-title'>
@@ -24,9 +26,12 @@ function Sidebar(){
                     </a>
                 </li>
                 <li className='sidebar-list-item'>
-                    <a href="">
+                    {/* <a href="">
                         <TfiAngleDoubleDown className='icon'></TfiAngleDoubleDown>Expenses
-                    </a>
+                    </a> */}
+                    <button type="button" className='link-btn' onClick={() => onNavigate?.('expenses')}>
+                        <TfiAngleDoubleDown className='icon'></TfiAngleDoubleDown>Expenses
+                    </button>
                 </li>
                 <li className='sidebar-list-item'>
                     <a href="">
