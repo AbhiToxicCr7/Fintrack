@@ -1,4 +1,5 @@
-﻿using BCrypt.Net;
+﻿using AuthenticationServer.Services.Cache;
+using BCrypt.Net;
 using FinTrack.Data;
 using FinTrack.DTOs;
 using FinTrack.Models;
@@ -14,10 +15,12 @@ namespace FinTrack.Controllers
     public class UserController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
+        private readonly IRedisCacheService _cache;
 
-        public UserController(ApplicationDbContext context)
+        public UserController(ApplicationDbContext context, IRedisCacheService cache)
         {
             _context = context;
+            _cache = cache;
         }
 
         [HttpPost("Register")]
@@ -89,8 +92,15 @@ namespace FinTrack.Controllers
             }
 
             string userEmail = emailClaim.Value;
+            User user = null;
+            user = await _context.Users.Include(ur => ur.UserRole).ThenInclude(r => r.Role).FirstOrDefaultAsync(x => x.Email.ToLower() == userEmail.ToLower());
 
-            var user =await _context.Users.Include(ur => ur.UserRole).ThenInclude(r => r.Role).FirstOrDefaultAsync(x =>x.Email.ToLower() == userEmail.ToLower());
+            //var cacheData = _cache.GetData<IEnumerable<User>>(key: "Users");
+
+            //if(cacheData == null)
+            //{
+            //    _cache.SetData(key: "Users", user);
+            //}
 
             var profileDTO = new ProfileDTO
             {
