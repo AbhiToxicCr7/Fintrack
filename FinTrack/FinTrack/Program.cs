@@ -1,9 +1,12 @@
+using AuthenticationServer.Services.Cache;
 using FinTrack.Data;
 using FinTrack.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using StackExchange.Redis;
+using System.Text.Json.Serialization;
 
 namespace FinTrack
 {
@@ -19,6 +22,8 @@ namespace FinTrack
                 {
                     // Preserve property names as defined in the C# models (disable camelCase naming)
                     options.JsonSerializerOptions.PropertyNamingPolicy = null;
+                    options.JsonSerializerOptions.Converters.Add(
+                            new JsonStringEnumConverter());
                 });
 
             // Add services for generating Swagger/OpenAPI documentation
@@ -39,6 +44,15 @@ namespace FinTrack
             // Configure Entity Framework Core with SQL Server using the connection string from configuration
             builder.Services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(builder.Configuration.GetConnectionString("EFCoreDBConnection")));
+
+            //Configure Redis caching
+            builder.Services.AddStackExchangeRedisCache(options =>
+            {
+                options.Configuration = builder.Configuration.GetConnectionString("Redis");
+                options.InstanceName = "Users_";
+            });
+
+            builder.Services.AddScoped<IRedisCacheService, RedisCacheService>();
 
             // Register the KeyRotationService as a hosted (background) service
             // This service handles periodic rotation of signing keys to enhance security
