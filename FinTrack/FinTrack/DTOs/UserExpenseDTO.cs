@@ -6,6 +6,9 @@ namespace AuthenticationServer.DTOs
     public class UserExpenseDTO
     {
         [Required]
+        public int Id { get; set; }//Id of the record
+
+        [Required]
         public int UserId { get; set; }
 
         [Required]
@@ -19,6 +22,8 @@ namespace AuthenticationServer.DTOs
 
         public DateTime Date { get; set; }
 
-        public string Note { get; set; }    
+        public string Note { get; set; }
+        
+        public decimal TotalExpenseAmount { get; set; }
     }
 }
