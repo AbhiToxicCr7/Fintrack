@@ -81,10 +81,13 @@ namespace AuthenticationServer.Controllers
                 Id = x.Id
             });
 
+            var expByCategory = _userExpenseHelper.CalculateCategoryWiseExpense(userExpense, category);
+
             var response = new UserExpenseResponseDTO
             {
                 TotalExpenseAmount = monthlyAmount,
-                Expenses = result
+                Expenses = result,
+                ExpenseByCategory = expByCategory
             };
 
             return Ok(response);

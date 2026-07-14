@@ -41,5 +41,15 @@ namespace AuthenticationServer.Helpers
         {
             return expenses.Where(x => x.Date.Month == DateTime.Now.Month && x.Date.Year == DateTime.Now.Year).Sum(x => x.Amount);
         }
+
+        public Dictionary<CategoryTypes, decimal> CalculateCategoryWiseExpense(IQueryable<UserExpense> expenses, string? category = null)
+        {
+            var abc = expenses.GroupBy(x => x.Category).ToDictionary(
+                g => g.Key,
+                g => g.Sum(x => x.Amount)
+                );
+
+            return abc;
+        }
     }
 }
