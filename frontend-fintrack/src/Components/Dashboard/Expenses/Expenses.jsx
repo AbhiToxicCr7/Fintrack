@@ -4,6 +4,17 @@ import React, { useState, useEffect } from 'react'
 import './Expenses.css';
 import axios from 'axios';
 
+//Recharts
+import {
+  Pie,
+  PieChart,
+  PieLabelRenderProps,
+  PieSectorShapeProps,
+  Sector,
+  useActiveTooltipDataPoints,
+  useIsTooltipActive,
+} from 'recharts';
+
 function Expenses(){
     //const [action, setAction] = useState("Null");
     const [amount, setAmount] = useState("");
@@ -14,12 +25,86 @@ function Expenses(){
     const token = localStorage.getItem('authToken');
     const [totalMonthlyExpense, setTotalMonthyExpense] = useState(0);
     const [expenses, setExpenses] = useState([]);
+    const [expenseByCategory, setExpenseByCategory] = useState({});
     const [isEditing, setIsEditing] = useState(false);
     const [editingId, setEditingId] = useState(null);
     const [filterCategory, setFilterCategory] = useState("");
     const [filterDay, setFilterDay] = useState("");
     const [filterMonth, setFilterMonth] = useState("");
     const [filterYear, setFilterYear] = useState("");
+
+    // #region Pie chart
+    // const chartData = [
+    // { name: '${expenses.ExpenseByCategory.Key}', value: {expenses.ExpenseByCategory.value} },
+    // { name: 'Group B', value: 100 },
+    // { name: 'Group C', value: 100 },
+    // { name: 'Group D', value: 100 },
+    // ];
+
+    const chartData = Object.entries(expenseByCategory || {}).map(
+    ([key, value]) => ({
+            name: key,
+            value: value
+        })
+    );
+
+    const RADIAN = Math.PI / 180;
+    const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
+
+    const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent }: PieLabelRenderProps) => {
+        if (cx == null || cy == null || innerRadius == null || outerRadius == null) {
+        return null;
+  }
+    const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
+    const ncx = Number(cx);
+    const x = ncx + radius * Math.cos(-(midAngle ?? 0) * RADIAN);
+    const ncy = Number(cy);
+    const y = ncy + radius * Math.sin(-(midAngle ?? 0) * RADIAN);
+
+  return (
+    <text x={x} y={y} fill="white" textAnchor={x > ncx ? 'start' : 'end'} dominantBaseline="central">
+      {`${((percent ?? 1) * 100).toFixed(0)}%`}
+    </text>
+  );
+};
+
+const MyCustomPie = (props: PieSectorShapeProps) => {
+  const p = useActiveTooltipDataPoints();
+  const isAnyPieActive = useIsTooltipActive();
+  const isThisPieActive = isAnyPieActive && props.payload === p?.[0];
+  let fillOpacity: number;
+  if (isAnyPieActive && !isThisPieActive) {
+    fillOpacity = 0.5;
+  } else {
+    fillOpacity = 1;
+  }
+  return (
+    <Sector
+      {...props}
+      fill={COLORS[props.index % COLORS.length]}
+      fillOpacity={fillOpacity}
+      style={{ transition: 'fill-opacity 0.3s ease' }}
+    />
+  );
+};
+
+const PieChartWithCustomizedLabel = ({ isAnimationActive = true }: { isAnimationActive?: boolean }) => {
+  return (
+    <PieChart style={{ width: '100%', maxWidth: '500px', maxHeight: '500px', aspectRatio: 1 }}>
+      <Pie
+        data={chartData}
+        labelLine={false}
+        label={renderCustomizedLabel}
+        fill="#8884d8"
+        dataKey="value"
+        isAnimationActive={isAnimationActive}
+        shape={MyCustomPie}
+      />
+    </PieChart>
+  );
+};
+    // #endregion
+    
 
     const categories = ["Food","Transport","Housing","Utilities","Healthcare","Education","Entertainment","Clothing","Savings","Investment","Miscellaneous"]
 
@@ -100,7 +185,10 @@ function Expenses(){
 
         const url = `https://localhost:44389/api/UserExpense/GetById?userId=${loggedUserID}`;
         axios.get(url, { headers: { Authorization: `Bearer ${token}` } })
-            .then(r=> setExpenses(r.data.Expenses || []))
+            .then(r=>{
+                setExpenses(r.data.Expenses || []);
+                setExpenseByCategory(r.data.ExpenseByCategory || {});
+            })
             .catch(()=>{
                 // fallback to older endpoint if present
             });
@@ -121,6 +209,7 @@ function Expenses(){
             .then((r)=>{
                 setExpenses(r.data.Expenses || []);
                 setTotalMonthyExpense(r.data.TotalExpenseAmount || 0);
+                setExpenseByCategory(r.data.ExpenseByCategory || {});
             })
             .catch(()=>{
                 // fallback to older endpoint if present
@@ -188,50 +277,52 @@ function Expenses(){
             {/* <div className="exp-add-button-container">
                 <button className="add-expense" onClick={()=> setAction("add")}>Add Expense</button>
             </div> */}
-            <div className="expense-inputs">
-                <div className="input1">
-                    <input
-                        type="text"
-                        placeholder="Amount"
-                        value={amount}
-                        onChange={(e)=> handleAmountChange(e.target.value)}
-                    />
-                    <input
-                        type="text"
-                        placeholder="Currency"
-                        value={currency}
-                        onChange={(e)=> handleCurrencyChange(e.target.value)}
-                    />
-                    <select
-                        value={category}
-                        onChange={(e)=> handleCategoryChange(e.target.value)}
-                        >
-                        <option value="">Select Category</option>
-                        {categories.map((c) =>(
-                            <option key={c} value={c}>{c}</option>
-                        ))}
-                    </select>
-                    <input
-                        type="date"
-                        placeholder="Date"
-                        value={date}
-                        onChange={(e)=> handleDateChange(e.target.value)}
-                    />
-                    <input
-                        type="text"
-                        placeholder="Notes"
-                        value={note}
-                        onChange={(e)=> handleNoteChange(e.target.value)}
-                    />
+            <div className="expense-input-wrapper">
+                <div className="expense-inputs">
+                    <div className="input1">
+                        <input
+                            type="text"
+                            placeholder="Amount"
+                            value={amount}
+                            onChange={(e)=> handleAmountChange(e.target.value)}
+                        />
+                        <input
+                            type="text"
+                            placeholder="Currency"
+                            value={currency}
+                            onChange={(e)=> handleCurrencyChange(e.target.value)}
+                        />
+                        <select
+                            value={category}
+                            onChange={(e)=> handleCategoryChange(e.target.value)}
+                            >
+                            <option value="">Select Category</option>
+                            {categories.map((c) =>(
+                                <option key={c} value={c}>{c}</option>
+                            ))}
+                        </select>
+                        <input
+                            type="date"
+                            placeholder="Date"
+                            value={date}
+                            onChange={(e)=> handleDateChange(e.target.value)}
+                        />
+                        <input
+                            type="text"
+                            placeholder="Notes"
+                            value={note}
+                            onChange={(e)=> handleNoteChange(e.target.value)}
+                        />
+                        <button className="save" onClick={()=> handleSave()}>{isEditing? 'Update' : 'Save'}</button>
+                        {isEditing && (
+                            <button className="cancel" onClick={()=>{ setIsEditing(false); setEditingId(null); clearForm(); }}>Cancel</button>
+                        )}
+                    </div>
                 </div>
-            </div>
-            <div className="exp-save-button-container">
-                <button className="save" onClick={()=> handleSave()}>{isEditing? 'Update' : 'Save'}</button>
-                {isEditing && (
-                    <button className="cancel" onClick={()=>{ setIsEditing(false); setEditingId(null); clearForm(); }}>Cancel</button>
-                )}
-                {/* <button className="cancel" onClick={()=> handleCancel()}>Cancel</button> */}
-            </div>          
+                <div className="expense-chart-container">
+                    <PieChartWithCustomizedLabel isAnimationActive={true} />
+                </div>
+            </div>        
             <div className="expenses-table-container">
                 <div className="expenses-filters">
                     <label>

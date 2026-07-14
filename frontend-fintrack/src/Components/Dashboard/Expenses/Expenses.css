@@ -8,18 +8,43 @@
   --transition: 160ms cubic-bezier(.4,0,.2,1);
 }
 
+.expense-input-wrapper {
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+  margin: 1rem 0;
+  flex-wrap: wrap;
+  height: 400px;
+}
+
 .expense-inputs {
   /* make the inputs container take 50% of the viewport width on any device/zoom */
   width: 50vw;
   max-width: none;
   box-sizing: border-box;
-  margin: 1rem 0;
+  flex: 1;
+  min-width: 300px;
+}
+
+.expense-chart-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  min-width: 300px;
+  padding: 0.2rem;
 }
 
 .expense-inputs .input1 {
   display: flex;
   flex-direction: column;
   gap: .9rem;
+}
+
+.expense-chart-container .recharts-wrapper {
+    width: 100% !important;
+    height: 100% !important;
+    top: -60px ;
 }
 
 .expense-inputs input,
@@ -66,7 +91,7 @@
   box-sizing: border-box;
 }
 
-.exp-save-button-container .save {
+ .expense-inputs .save {
   width: 100%;
   background: linear-gradient(135deg, var(--accent), #8b5cf6);
   color: #ffffff;
@@ -79,7 +104,7 @@
   transition: var(--transition);
 }
 
-.exp-save-button-container .save:hover {
+.expense-inputs .save:hover {
   filter: brightness(1.04);
   transform: translateY(-1px);
 }
