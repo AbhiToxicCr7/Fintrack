@@ -29,10 +29,11 @@
 .expense-chart-container {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: center;    
   flex: 1;
   min-width: 300px;
   padding: 0.2rem;
+  margin: 50px;
 }
 
 .expense-inputs .input1 {

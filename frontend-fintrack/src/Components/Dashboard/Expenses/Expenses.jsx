@@ -3,6 +3,7 @@ import { GoAlertFill } from "react-icons/go";
 import React, { useState, useEffect } from 'react'
 import './Expenses.css';
 import axios from 'axios';
+import ExpensesChart from "../../Charts/ExpensePieChart";
 
 //Recharts
 import {
@@ -14,6 +15,7 @@ import {
   useActiveTooltipDataPoints,
   useIsTooltipActive,
 } from 'recharts';
+import { useAsyncError } from "react-router-dom";
 
 function Expenses(){
     //const [action, setAction] = useState("Null");
@@ -24,6 +26,7 @@ function Expenses(){
     const [note, setNote] = useState("");
     const token = localStorage.getItem('authToken');
     const [totalMonthlyExpense, setTotalMonthyExpense] = useState(0);
+    const [topSpendingCategory, setTopSpendingCategory] = useState("");
     const [expenses, setExpenses] = useState([]);
     const [expenseByCategory, setExpenseByCategory] = useState({});
     const [isEditing, setIsEditing] = useState(false);
@@ -33,78 +36,12 @@ function Expenses(){
     const [filterMonth, setFilterMonth] = useState("");
     const [filterYear, setFilterYear] = useState("");
 
-    // #region Pie chart
-    // const chartData = [
-    // { name: '${expenses.ExpenseByCategory.Key}', value: {expenses.ExpenseByCategory.value} },
-    // { name: 'Group B', value: 100 },
-    // { name: 'Group C', value: 100 },
-    // { name: 'Group D', value: 100 },
-    // ];
-
     const chartData = Object.entries(expenseByCategory || {}).map(
-    ([key, value]) => ({
-            name: key,
-            value: value
-        })
-    );
-
-    const RADIAN = Math.PI / 180;
-    const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
-
-    const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent }: PieLabelRenderProps) => {
-        if (cx == null || cy == null || innerRadius == null || outerRadius == null) {
-        return null;
-  }
-    const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
-    const ncx = Number(cx);
-    const x = ncx + radius * Math.cos(-(midAngle ?? 0) * RADIAN);
-    const ncy = Number(cy);
-    const y = ncy + radius * Math.sin(-(midAngle ?? 0) * RADIAN);
-
-  return (
-    <text x={x} y={y} fill="white" textAnchor={x > ncx ? 'start' : 'end'} dominantBaseline="central">
-      {`${((percent ?? 1) * 100).toFixed(0)}%`}
-    </text>
-  );
-};
-
-const MyCustomPie = (props: PieSectorShapeProps) => {
-  const p = useActiveTooltipDataPoints();
-  const isAnyPieActive = useIsTooltipActive();
-  const isThisPieActive = isAnyPieActive && props.payload === p?.[0];
-  let fillOpacity: number;
-  if (isAnyPieActive && !isThisPieActive) {
-    fillOpacity = 0.5;
-  } else {
-    fillOpacity = 1;
-  }
-  return (
-    <Sector
-      {...props}
-      fill={COLORS[props.index % COLORS.length]}
-      fillOpacity={fillOpacity}
-      style={{ transition: 'fill-opacity 0.3s ease' }}
-    />
-  );
-};
-
-const PieChartWithCustomizedLabel = ({ isAnimationActive = true }: { isAnimationActive?: boolean }) => {
-  return (
-    <PieChart style={{ width: '100%', maxWidth: '500px', maxHeight: '500px', aspectRatio: 1 }}>
-      <Pie
-        data={chartData}
-        labelLine={false}
-        label={renderCustomizedLabel}
-        fill="#8884d8"
-        dataKey="value"
-        isAnimationActive={isAnimationActive}
-        shape={MyCustomPie}
-      />
-    </PieChart>
-  );
-};
-    // #endregion
-    
+    ([category, totalAmount]) => ({
+        name: category,
+        value: totalAmount
+    })
+    );    
 
     const categories = ["Food","Transport","Housing","Utilities","Healthcare","Education","Entertainment","Clothing","Savings","Investment","Miscellaneous"]
 
@@ -210,6 +147,7 @@ const PieChartWithCustomizedLabel = ({ isAnimationActive = true }: { isAnimation
                 setExpenses(r.data.Expenses || []);
                 setTotalMonthyExpense(r.data.TotalExpenseAmount || 0);
                 setExpenseByCategory(r.data.ExpenseByCategory || {});
+                setTopSpendingCategory(r.data.HighestSpentCategory || "");
             })
             .catch(()=>{
                 // fallback to older endpoint if present
@@ -264,7 +202,7 @@ const PieChartWithCustomizedLabel = ({ isAnimationActive = true }: { isAnimation
                         <h3>TOP SPENDING CATEGORY</h3>
                         <TfiAngleDoubleUp className='card_icon'></TfiAngleDoubleUp>
                     </div>
-                    <h1>HOUSING</h1>
+                    <h1>{topSpendingCategory}</h1>
                 </div>
                 <div className='exp-card'>
                     <div className='exp-card-inner'>
@@ -320,7 +258,7 @@ const PieChartWithCustomizedLabel = ({ isAnimationActive = true }: { isAnimation
                     </div>
                 </div>
                 <div className="expense-chart-container">
-                    <PieChartWithCustomizedLabel isAnimationActive={true} />
+                    <ExpensesChart data={chartData}></ExpensesChart>
                 </div>
             </div>        
             <div className="expenses-table-container">

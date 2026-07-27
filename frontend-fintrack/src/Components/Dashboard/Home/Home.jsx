@@ -113,7 +113,7 @@ function Home(){
                 </div>
                 <div className='card'>
                     <div className='card-inner'>
-                        <h3>TOTAL INCOMES(This Month)</h3>
+                        <h3>TOTAL INCOME(This Month)</h3>
                         <TfiAngleDoubleUp className='card_icon'></TfiAngleDoubleUp>
                     </div>
                     <h1>61,290 INR</h1>

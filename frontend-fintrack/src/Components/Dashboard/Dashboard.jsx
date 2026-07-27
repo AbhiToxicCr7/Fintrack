@@ -5,6 +5,7 @@ import DashboardHeader from './Header/DashboardHeader.jsx';
 import Home from './Home/Home.jsx';
 import Sidebar from './Sidebar/Sidebar.jsx';
 import Expenses from './Expenses/Expenses.jsx';
+import Income from './Income/Income.jsx';
 
 export const Dashboard = () => {
     const [profile, setProfile] = useState(null);
@@ -34,12 +35,27 @@ export const Dashboard = () => {
         return <div>{profile.error}</div>
     }
 
+    const renderActiveView = () => {
+    switch (activeView) {
+        case "expenses":
+            return <Expenses />;
+
+        case "income":
+            return <Income />;
+
+        case "dashboard":
+            return <Home />;
+
+        default:
+            return <Home />;
+    }
+};
+
     return (
         <div className="grid-container-dashboard">
-            {activeView !== 'expenses' ? <DashboardHeader/> : null}
-            {/* <DashboardHeader></DashboardHeader> */}
-            <Sidebar onNavigate={setActiveView}></Sidebar>
-            {activeView === 'expenses' ? <Expenses /> : <Home />}
+           {activeView !== "expenses" && <DashboardHeader />}
+            <Sidebar onNavigate={setActiveView} />
+            {renderActiveView()}
         </div>
     );
 };
