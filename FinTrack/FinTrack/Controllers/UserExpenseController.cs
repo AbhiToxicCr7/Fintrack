@@ -59,7 +59,7 @@ namespace AuthenticationServer.Controllers
         [HttpGet("GetById", Name = "GetUserExpensesByUserId")]
         public ActionResult<IEnumerable<UserExpenseDTO>> GetProductById([FromQuery] int userId, [FromQuery] string? category = null, [FromQuery] int? day = null, [FromQuery] int? month = null, [FromQuery] int? year = null)
         {
-            var exp = _context.UserExpenses.ToList();
+            //var exp = _context.UserExpenses.ToList();
             var userExpense = _context.UserExpenses.Where(x => x.UserId == userId);
 
             var filteredUserExpense = _userExpenseHelper.FilterDataWithParams(userExpense, category, day, month, year);
@@ -68,9 +68,9 @@ namespace AuthenticationServer.Controllers
                 return NotFound(new { message = $"Expense with UserID {userId} not found." });
             }
 
-            var monthlyAmount = _userExpenseHelper.CalculateTotalExpense(userExpense);
+            var monthlyAmount = _userExpenseHelper.CalculateMonthlyTotalExpense(userExpense);
 
-            var result = filteredUserExpense.Select(x => new UserExpenseDTO
+            var expenses = filteredUserExpense.Select(x => new UserExpenseDTO
             {
                 Amount = x.Amount,
                 Currency = x.Currency,
@@ -82,12 +82,14 @@ namespace AuthenticationServer.Controllers
             });
 
             var expByCategory = _userExpenseHelper.CalculateCategoryWiseExpense(userExpense, category);
+            string highestSpentCategory = _userExpenseHelper.CaculateHighestSpentCategory(userExpense);
 
             var response = new UserExpenseResponseDTO
             {
                 TotalExpenseAmount = monthlyAmount,
-                Expenses = result,
-                ExpenseByCategory = expByCategory
+                Expenses = expenses,
+                ExpenseByCategory = expByCategory,
+                HighestSpentCategory = highestSpentCategory
             };
 
             return Ok(response);

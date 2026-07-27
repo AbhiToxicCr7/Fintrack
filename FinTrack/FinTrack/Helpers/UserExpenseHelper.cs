@@ -37,7 +37,7 @@ namespace AuthenticationServer.Helpers
             return res.ToList();
         }
 
-        public decimal CalculateTotalExpense(IQueryable<UserExpense> expenses)
+        public decimal CalculateMonthlyTotalExpense(IQueryable<UserExpense> expenses)
         {
             return expenses.Where(x => x.Date.Month == DateTime.Now.Month && x.Date.Year == DateTime.Now.Year).Sum(x => x.Amount);
         }
@@ -50,6 +50,31 @@ namespace AuthenticationServer.Helpers
                 );
 
             return abc;
+        }
+
+        public string CaculateHighestSpentCategory(IQueryable<UserExpense> expenses)
+        {
+            //var res = expenses.GroupBy(x => x.Category).ToDictionary(
+            //    g=> g.Key,
+            //    g=>g.Sum(x => x.Amount)
+            //    );
+
+            //var maxValue = res.Max(x => x.Value);
+
+            //var bcd = res.Where(x => x.Value == maxValue).Select(x => x.Key).FirstOrDefault().ToString();
+            //return bcd;
+
+            var ans = expenses.GroupBy(x=>x.Category)
+                .Select(g=> new
+                {
+                    Category = g.Key,
+                    TotalAmount = g.Sum(x => x.Amount)
+                })
+                .OrderByDescending(x=>x.TotalAmount)
+                .Select(x=>x.Category.ToString())
+                .FirstOrDefault() ?? "No Expenses";
+
+            return ans;
         }
     }
 }

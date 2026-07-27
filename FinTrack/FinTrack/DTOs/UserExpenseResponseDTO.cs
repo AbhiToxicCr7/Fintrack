@@ -8,5 +8,7 @@ namespace AuthenticationServer.DTOs
         public IEnumerable<UserExpenseDTO> Expenses { get; set; }
 
         public Dictionary<CategoryTypes, decimal>  ExpenseByCategory { get; set; }
+
+        public string HighestSpentCategory { get; set; }    
     }
 }
