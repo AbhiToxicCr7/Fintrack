@@ -84,9 +84,13 @@ export const LoginSignUp = () => {
             const token = response.data.Token || response.data;
             const userID = response.data.UserID || response.data;
             const hasUserDetail = response.data.HasUserDetail;
+            const userFirstName = response.data.UserFirstName;
+            const userMonthlySalary = response.data.UserMonthlySalary || "";
             // Call GetProfile API with JWT token
             localStorage.setItem('authToken',token);
             localStorage.setItem('loggedinUserID',userID);
+            localStorage.setItem('userFirstName', userFirstName);
+            localStorage.setItem('userMonthlySalary', userMonthlySalary);
             if(hasUserDetail)
             {
               navigate('/Dashboard');
@@ -100,17 +104,6 @@ export const LoginSignUp = () => {
         }
 
     }
-
-    // if(profile){
-    //     return (
-    //                <div className="dashboard">
-    //                 <h2>Dashboard</h2>
-    //                 <p>Email: {profile.Email}</p>
-    //                 <p>First Name: {profile.Firstname}</p>
-    //                 <p>Last Name: {profile.Lastname}</p>
-    //               </div>
-    //             );
-    // }
 
   return (
     <div className="container">

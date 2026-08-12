@@ -45,9 +45,12 @@ function Sidebar({ onNavigate }){
                     </a>
                 </li>
                 <li className='sidebar-list-item'>
-                    <a href="">
+                    {/* <a href="">
                         <IoSettings className='icon'></IoSettings>Settings
-                    </a>
+                    </a> */}
+                    <button type="button" className='link-btn' onClick={() => onNavigate?.('settings')}>
+                        <IoSettings className='icon'></IoSettings>Settings
+                    </button>
                 </li>
             </ul>
         </aside>

@@ -6,6 +6,7 @@ import Home from './Home/Home.jsx';
 import Sidebar from './Sidebar/Sidebar.jsx';
 import Expenses from './Expenses/Expenses.jsx';
 import Income from './Income/Income.jsx';
+import Settings from '../Settings/Settings.jsx'
 
 export const Dashboard = () => {
     const [profile, setProfile] = useState(null);
@@ -45,6 +46,9 @@ export const Dashboard = () => {
 
         case "dashboard":
             return <Home />;
+
+        case "settings":
+            return <Settings/>;
 
         default:
             return <Home />;

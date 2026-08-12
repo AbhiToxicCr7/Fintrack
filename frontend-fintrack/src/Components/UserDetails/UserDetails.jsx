@@ -43,6 +43,7 @@ export const UserDetails = () => {
     const [profession, setProfession] = useState("");
     const [jobTitle, setJobTitle] = useState("");
     const [annualSalary, setAnnualSalary] = useState("");
+    const [monthlySalary, setMonthlySalary] = useState("");
 
     const handleProfessionChange = (value) => {
         setProfession(value);
@@ -56,6 +57,10 @@ export const UserDetails = () => {
         setAnnualSalary(value);
     }
 
+    const handleMonthlySalaryChange = (value) => {
+        setMonthlySalary(value);
+    }
+
 
     const handleUserDetails = () => {
         const url = "https://localhost:44389/api/UserDetail/Add";
@@ -64,7 +69,8 @@ export const UserDetails = () => {
             UserId : loggedUserID,
             Profession : profession,
             JobTitle : jobTitle,
-            AnnualSalary : annualSalary
+            AnnualSalary : annualSalary,
+            MonthlySalary : monthlySalary
         }
 
         axios.post(url, data,{
@@ -176,6 +182,12 @@ export const UserDetails = () => {
                         value={annualSalary}
                         onChange={(e)=> handleAnnualSalaryChange(e.target.value)}
                     />
+                    <input
+                        type="text"
+                        placeholder="Monthly In-Hand Salary"
+                        value={monthlySalary}
+                        onChange={(e)=> handleMonthlySalaryChange(e.target.value)}
+                    />
                 </div>
             </div>
             <div className="button-container-userDetail">
@@ -184,3 +196,5 @@ export const UserDetails = () => {
         </div>
     );
 };
+
+export default UserDetails

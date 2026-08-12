@@ -4,6 +4,8 @@ import React, { useState, useEffect } from 'react'
 import './Expenses.css';
 import axios from 'axios';
 import ExpensesChart from "../../Charts/ExpensePieChart";
+import { useQuery } from '@tanstack/react-query';
+import { FetchExpenseService } from "../../../Services/UserExpenseService.js";
 
 //Recharts
 import {
@@ -62,6 +64,37 @@ function Expenses(){
     const handleNoteChange = (value)=>{
         setNote(value);
     }
+
+    const fetchExpenses = () => {
+        const base = `https://localhost:44389/api/UserExpense/GetById`;
+
+        const urlParams = new URLSearchParams();
+        urlParams.append('userId', loggedUserID);
+        if (filterCategory) urlParams.append('category', filterCategory);
+        if (filterDay) urlParams.append('day', filterDay);
+        if (filterMonth) urlParams.append('month', filterMonth);
+        if (filterYear) urlParams.append('year', filterYear);
+
+        const url = `${base}?${urlParams.toString()}`;
+        axios.get(url, { headers: { Authorization: `Bearer ${token}` } })
+            .then((r)=>{
+                setExpenses(r.data.Expenses || []);
+                setTotalMonthyExpense(r.data.TotalExpenseAmount || 0);
+                setExpenseByCategory(r.data.ExpenseByCategory || {});
+                setTopSpendingCategory(r.data.HighestSpentCategory || "");
+            })
+            .catch(()=>{
+                // fallback to older endpoint if present
+            });
+    }
+
+    const {
+        data: userExpenseData,
+        isLoading
+    } = useQuery({
+        queryKey: ['userExpenses', loggedUserID],
+        queryFn: ()=> FetchExpenseService(loggedUserID, token, filterCategory, filterDay, filterMonth, filterYear)
+    })
 
     const handleSave = ()=>{
         const data = {
@@ -131,29 +164,6 @@ function Expenses(){
             });
     } 
 
-    const fetchExpenses = () => {
-        const base = `https://localhost:44389/api/UserExpense/GetById`;
-
-        const urlParams = new URLSearchParams();
-        urlParams.append('userId', loggedUserID);
-        if (filterCategory) urlParams.append('category', filterCategory);
-        if (filterDay) urlParams.append('day', filterDay);
-        if (filterMonth) urlParams.append('month', filterMonth);
-        if (filterYear) urlParams.append('year', filterYear);
-
-        const url = `${base}?${urlParams.toString()}`;
-        axios.get(url, { headers: { Authorization: `Bearer ${token}` } })
-            .then((r)=>{
-                setExpenses(r.data.Expenses || []);
-                setTotalMonthyExpense(r.data.TotalExpenseAmount || 0);
-                setExpenseByCategory(r.data.ExpenseByCategory || {});
-                setTopSpendingCategory(r.data.HighestSpentCategory || "");
-            })
-            .catch(()=>{
-                // fallback to older endpoint if present
-            });
-    }
-
     useEffect(()=>{
         fetchExpenses();
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -195,7 +205,7 @@ function Expenses(){
                         <h3>TOTAL EXPENSES(Current Month)</h3>
                         <TfiAngleDoubleDown className='card_icon'></TfiAngleDoubleDown>
                     </div>
-                    <h1>{totalMonthlyExpense} INR</h1>
+                    <h1>{userExpenseData?.TotalExpenseAmount} INR</h1>
                 </div>
                 <div className='exp-card'>
                     <div className='exp-card-inner'>
