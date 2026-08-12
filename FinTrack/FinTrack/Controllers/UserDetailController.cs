@@ -30,7 +30,7 @@ namespace AuthenticationServer.Controllers
 
         // Retrieves a specific detail by UserID.
         [HttpGet("GetById/{id}", Name = "GetUserDetailByUserId")]
-        public ActionResult<UserDetail> GetProductById(int userId)
+        public ActionResult<UserDetail> GetProductById([FromRoute(Name="id" )]int userId)
         {
             var userDetail = _context.UserDetails.FirstOrDefault(ud => ud.Id == userId);
             if (userDetail == null)
@@ -61,10 +61,8 @@ namespace AuthenticationServer.Controllers
                 UserId = userDetailDTO.UserId,
                 Profession = userDetailDTO.Profession,
                 JobTitle = userDetailDTO.JobTitle,
-                AnnualSalary = userDetailDTO.AnnualSalary
-                //MonthlyIncome = userDetailDTO.MonthlyIncome,
-                //MonthlyExpenses = userDetailDTO.MonthlyExpenses,
-                //MonthlyInvestment = userDetailDTO.MonthlyInvestment
+                AnnualSalary = userDetailDTO.AnnualSalary,
+                MonthlySalary = userDetailDTO.MonthlySalary
             };
 
             _context.UserDetails.Add(newUserDetail);

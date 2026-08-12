@@ -16,14 +16,20 @@ function Sidebar({ onNavigate }){
             </div>
             <ul className='sidebar-list'>
                 <li className='sidebar-list-item'>
-                    <a href="">
+                    {/* <a href="">
                         <AiFillDashboard className='icon'></AiFillDashboard>Dashboard
-                    </a>
+                    </a> */}
+                    <button type="button" className='link-btn' onClick={() => onNavigate?.('dashboard')}>
+                        <AiFillDashboard className='icon'></AiFillDashboard>Dashboard
+                    </button>
                 </li>
                 <li className='sidebar-list-item'>
-                    <a href="">
-                        <TfiAngleDoubleUp className='icon'></TfiAngleDoubleUp>Incomes
-                    </a>
+                    {/* <a href="">
+                        <TfiAngleDoubleUp className='icon'></TfiAngleDoubleUp>Income
+                    </a> */}
+                    <button type="button" className='link-btn' onClick={() => onNavigate?.('income')}>
+                        <TfiAngleDoubleUp className='icon'></TfiAngleDoubleUp>Income
+                    </button>
                 </li>
                 <li className='sidebar-list-item'>
                     {/* <a href="">
@@ -39,9 +45,12 @@ function Sidebar({ onNavigate }){
                     </a>
                 </li>
                 <li className='sidebar-list-item'>
-                    <a href="">
+                    {/* <a href="">
                         <IoSettings className='icon'></IoSettings>Settings
-                    </a>
+                    </a> */}
+                    <button type="button" className='link-btn' onClick={() => onNavigate?.('settings')}>
+                        <IoSettings className='icon'></IoSettings>Settings
+                    </button>
                 </li>
             </ul>
         </aside>

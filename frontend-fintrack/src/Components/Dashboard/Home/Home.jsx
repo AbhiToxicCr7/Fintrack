@@ -3,173 +3,100 @@ import {BsFillArchiveFill} from 'react-icons/bs';
 import { BarChart, Bar, Rectangle, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, LineChart, Line } from 'recharts';
 import { TfiAngleDoubleDown, TfiAngleDoubleUp  } from "react-icons/tfi";
 import { GoAlertFill } from "react-icons/go";
+import { CiFaceSmile } from "react-icons/ci";
+import { useQuery } from '@tanstack/react-query';
+import axios from 'axios';
+import { getUserDetails } from "../../../Services/UserDetailService.js";
+import { FetchExpenseService } from "../../../Services/UserExpenseService.js";
+import ExpenseIncomeBarChart from "../../Charts/ExpenseIncomeBarChart";
+import Expenses from '../Expenses/Expenses.jsx';
+import ExpensesChart from "../../Charts/ExpensePieChart";
 
 
 function Home(){
 
-    const data = [
-  {
-    name: 'Page A',
-    uv: 4000,
-    pv: 2400,
-    amt: 2400,
-  },
-  {
-    name: 'Page B',
-    uv: 3000,
-    pv: 1398,
-    amt: 2210,
-  },
-  {
-    name: 'Page C',
-    uv: 2000,
-    pv: 9800,
-    amt: 2290,
-  },
-  {
-    name: 'Page D',
-    uv: 2780,
-    pv: 3908,
-    amt: 2000,
-  },
-  {
-    name: 'Page E',
-    uv: 1890,
-    pv: 4800,
-    amt: 2181,
-  },
-  {
-    name: 'Page F',
-    uv: 2390,
-    pv: 3800,
-    amt: 2500,
-  },
-  {
-    name: 'Page G',
-    uv: 3490,
-    pv: 4300,
-    amt: 2100,
-  },
-];
+   const userFirstName = localStorage.getItem('userFirstName');
+   const loggedinUserID = localStorage.getItem('loggedinUserID');
+   const token = localStorage.getItem('authToken');
 
-    const pieData = [
-  {
-    name: 'Page A',
-    uv: 4000,
-    pv: 2400,
-    amt: 2400,
-  },
-  {
-    name: 'Page B',
-    uv: 3000,
-    pv: 1398,
-    amt: 2210,
-  },
-  {
-    name: 'Page C',
-    uv: 2000,
-    pv: 9800,
-    amt: 2290,
-  },
-  {
-    name: 'Page D',
-    uv: 2780,
-    pv: 3908,
-    amt: 2000,
-  },
-  {
-    name: 'Page E',
-    uv: 1890,
-    pv: 4800,
-    amt: 2181,
-  },
-  {
-    name: 'Page F',
-    uv: 2390,
-    pv: 3800,
-    amt: 2500,
-  },
-  {
-    name: 'Page G',
-    uv: 3490,
-    pv: 4300,
-    amt: 2100,
-  },
-];
+   const {
+    data: userDetails,
+    isLoading,
+    error
+   } = useQuery({
+    queryKey: ['userDetails', loggedinUserID],
+    queryFn: ()=> getUserDetails(loggedinUserID, token)
+   })
+
+   const {
+    data: userExpenses
+   } = useQuery({
+    queryKey: ['userExpenses', loggedinUserID],
+    queryFn: ()=> FetchExpenseService(loggedinUserID, token)
+   })
+
+   const incomeVsExpenseData = userExpenses?.MonthWiseIncomeExpenseData || [];
+   const expenseByCategory  = userExpenses?.ExpenseByCategory || {};
+
+    const chartData = incomeVsExpenseData.map(item => ({
+        name: `${item.MonthName} ${item.Year}`,
+        income: item.TotalIncomeAmount,
+        expense: item.TotalExpenseAmount
+    }));
+
+    const pieChartData = Object.entries(expenseByCategory).map(([key, value]) => ({
+        name: key,
+        value: value
+    }));
+
+   const savings = userDetails?.MonthlySalary - userExpenses?.TotalExpenseAmount;
+   const savingsRate =
+    ((savings / userDetails?.MonthlySalary) * 100).toFixed(2);
 
     return (
         <main className='main-container'>
             <div className='main-title'>
-                <h3>DASHBOARD</h3>
+                <h3>Welcome {userFirstName}</h3>
             </div>
 
             <div className='main-cards'>
                 <div className='card'>
                     <div className='card-inner'>
-                        <h3>TOTAL EXPENSES(This Month)</h3>
-                        <TfiAngleDoubleDown className='card_icon'></TfiAngleDoubleDown>
-                    </div>
-                    <h1>45,000 INR</h1>
-                </div>
-                <div className='card'>
-                    <div className='card-inner'>
-                        <h3>TOTAL INCOMES(This Month)</h3>
+                        <h3>INCOME</h3>
                         <TfiAngleDoubleUp className='card_icon'></TfiAngleDoubleUp>
                     </div>
-                    <h1>61,290 INR</h1>
+                    <h1>{userDetails?.MonthlySalary} INR</h1>
                 </div>
                 <div className='card'>
                     <div className='card-inner'>
-                        <h3>ALERTS</h3>
-                        <GoAlertFill className='card_icon'></GoAlertFill>
+                        <h3>EXPENSE</h3>
+                        <TfiAngleDoubleDown className='card_icon'></TfiAngleDoubleDown>
                     </div>
-                    <h1>10</h1>
+                    <h1>{userExpenses?.TotalExpenseAmount} INR</h1>
+                </div>
+                <div className='card'>
+                    <div className='card-inner'>
+                        <h3>SAVINGS</h3>
+                        <CiFaceSmile className='card_icon'></CiFaceSmile>
+                    </div>
+                    <h1>{savings} INR</h1>
+                </div>
+                <div className='card'>
+                    <div className='card-inner'>
+                        <h3>SAVINGS RATE</h3>
+                        <CiFaceSmile className='card_icon'></CiFaceSmile>
+                    </div>
+                    <h1>{savingsRate}%</h1>
                 </div>
             </div>
             <div className='charts'>
                 <ResponsiveContainer width="100%" height="100%">
-            <BarChart
-            width={500}
-            height={300}
-            data={data}
-            margin={{
-                top: 5,
-                right: 30,
-                left: 20,
-                bottom: 5,
-            }}
-            >
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="name" />
-                <YAxis />
-                <Tooltip />
-                <Legend />
-                <Bar dataKey="pv" fill="#8884d8" />
-                <Bar dataKey="uv" fill="#82ca9d" />
-                </BarChart>
-            </ResponsiveContainer>
+                  <ExpenseIncomeBarChart data={chartData}></ExpenseIncomeBarChart>   
+                </ResponsiveContainer>
 
-            <ResponsiveContainer width="100%" height="100%">
-                <LineChart
-                width={500}
-                height={300}
-                data={data}
-                margin={{
-                    top: 5,
-                    right: 30,
-                    left: 20,
-                    bottom: 5,
-                }}
-                >
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="name" />
-                <YAxis />
-                <Tooltip />
-                <Legend />
-                <Line type="monotone" dataKey="pv" stroke="#8884d8" activeDot={{ r: 8 }} />
-                <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
-                </LineChart>
-            </ResponsiveContainer>
+                <ResponsiveContainer width="100%" height="100%">
+                    <ExpensesChart data={pieChartData}></ExpensesChart>
+                </ResponsiveContainer>
             </div>
         </main>
     )

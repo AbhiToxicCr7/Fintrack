@@ -30,7 +30,7 @@ namespace FinTrack.Models
 
         public DateTime Date { get; set; }
 
-        public string Note { get; set; }
+        public string? Note { get; set; }
 
         // Clarification: Storing TotalExpenses on each row duplicates data.
         // If you truly need a persisted column, keep this.

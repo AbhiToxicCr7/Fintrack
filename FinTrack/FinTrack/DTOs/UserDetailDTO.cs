@@ -18,7 +18,7 @@ namespace AuthenticationServer.DTOs
         [Required]
         public decimal AnnualSalary { get; set; }
 
-        public decimal MonthlyIncome { get; set; }
+        public decimal MonthlySalary { get; set; }
 
         public decimal MonthlyExpenses { get; set; }
 
