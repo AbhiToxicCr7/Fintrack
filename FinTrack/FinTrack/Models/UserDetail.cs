@@ -24,9 +24,9 @@ namespace ResourceServer.Models
         [Column(TypeName = "decimal(18,2)")]
         public decimal AnnualSalary { get; set; }
 
-        [NotMapped]
+        [Required]
         [Column(TypeName = "decimal(18,2)")]
-        public decimal MonthlySalary => AnnualSalary / 12m;
+        public decimal MonthlySalary { get; set; }
 
 
         public DateTime CreatedDate { get; set; } = DateTime.UtcNow;

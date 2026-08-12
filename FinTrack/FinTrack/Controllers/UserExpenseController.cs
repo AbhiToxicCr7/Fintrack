@@ -1,5 +1,6 @@
 ﻿using AuthenticationServer.DTOs;
 using AuthenticationServer.Helpers;
+using AuthenticationServer.Services;
 using AuthenticationServer.Services.Cache;
 using FinTrack.Data;
 using FinTrack.DTOs;
@@ -17,13 +18,13 @@ namespace AuthenticationServer.Controllers
     {
         private readonly ApplicationDbContext _context;
         private readonly IRedisCacheService _cache;
-        private readonly UserExpenseHelper _userExpenseHelper;
+        private readonly UserExpenseService _userExpenseService;
 
         public UserExpenseController(ApplicationDbContext context, IRedisCacheService cache)
         {
             _context = context;
             _cache = cache;
-            _userExpenseHelper = new UserExpenseHelper();
+            _userExpenseService = new UserExpenseService(context);   
         }
 
         [HttpPost("AddExpense")]
@@ -57,40 +58,22 @@ namespace AuthenticationServer.Controllers
         }
 
         [HttpGet("GetById", Name = "GetUserExpensesByUserId")]
-        public ActionResult<IEnumerable<UserExpenseDTO>> GetProductById([FromQuery] int userId, [FromQuery] string? category = null, [FromQuery] int? day = null, [FromQuery] int? month = null, [FromQuery] int? year = null)
+        public async Task<ActionResult<UserExpenseResponseDTO>> GetUserExpenses([FromQuery] int userId, [FromQuery] string? category = null, [FromQuery] int? day = null, [FromQuery] int? month = null, [FromQuery] int? year = null)
         {
-            //var exp = _context.UserExpenses.ToList();
-            var userExpense = _context.UserExpenses.Where(x => x.UserId == userId);
+            var response = await _userExpenseService.GetUserExpenses(
+                userId,
+                category,
+                day,
+                month,
+                year);
 
-            var filteredUserExpense = _userExpenseHelper.FilterDataWithParams(userExpense, category, day, month, year);
-            if (filteredUserExpense == null)
+            if (response == null)
             {
-                return NotFound(new { message = $"Expense with UserID {userId} not found." });
+                return NotFound(new
+                {
+                    message = $"No expenses found for UserID {userId}."
+                });
             }
-
-            var monthlyAmount = _userExpenseHelper.CalculateMonthlyTotalExpense(userExpense);
-
-            var expenses = filteredUserExpense.Select(x => new UserExpenseDTO
-            {
-                Amount = x.Amount,
-                Currency = x.Currency,
-                Category = x.Category,
-                Date = x.Date,
-                Note = x.Note,
-                UserId = x.UserId,
-                Id = x.Id
-            });
-
-            var expByCategory = _userExpenseHelper.CalculateCategoryWiseExpense(userExpense, category);
-            string highestSpentCategory = _userExpenseHelper.CaculateHighestSpentCategory(userExpense);
-
-            var response = new UserExpenseResponseDTO
-            {
-                TotalExpenseAmount = monthlyAmount,
-                Expenses = expenses,
-                ExpenseByCategory = expByCategory,
-                HighestSpentCategory = highestSpentCategory
-            };
 
             return Ok(response);
         }

@@ -1,4 +1,5 @@
-﻿using FinTrack.Models;
+﻿using AuthenticationServer.DTOs;
+using FinTrack.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -54,16 +55,6 @@ namespace AuthenticationServer.Helpers
 
         public string CaculateHighestSpentCategory(IQueryable<UserExpense> expenses)
         {
-            //var res = expenses.GroupBy(x => x.Category).ToDictionary(
-            //    g=> g.Key,
-            //    g=>g.Sum(x => x.Amount)
-            //    );
-
-            //var maxValue = res.Max(x => x.Value);
-
-            //var bcd = res.Where(x => x.Value == maxValue).Select(x => x.Key).FirstOrDefault().ToString();
-            //return bcd;
-
             var ans = expenses.GroupBy(x=>x.Category)
                 .Select(g=> new
                 {
@@ -75,6 +66,33 @@ namespace AuthenticationServer.Helpers
                 .FirstOrDefault() ?? "No Expenses";
 
             return ans;
+        }
+
+        public IEnumerable<MonthWiseIncomeExpenseData> GetIncomeVsExpense(IQueryable<UserExpense> expenses, decimal userMonthlySalary)
+        {
+            var result = expenses
+                .GroupBy(x => new
+                {
+                    x.Date.Year,
+                    x.Date.Month
+                })
+                .Select(g => new
+                {
+                    Year = g.Key.Year,
+                    Month = g.Key.Month,
+                    TotalExpenseAmount = g.Sum(x => x.Amount)
+                })
+                .OrderBy(x => x.Year)
+                .ThenBy(x => x.Month)
+                .ToList();
+
+            return result.Select(x => new MonthWiseIncomeExpenseData
+            {
+                Year = x.Year,
+                MonthName = new DateTime(x.Year, x.Month, 1).ToString("MMMM"),
+                TotalExpenseAmount = x.TotalExpenseAmount,
+                TotalIncomeAmount = userMonthlySalary
+            });
         }
     }
 }

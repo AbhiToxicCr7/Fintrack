@@ -58,6 +58,10 @@ namespace FinTrack.Controllers
             }
 
             bool hasUserDetail = await _context.UserDetails.AnyAsync(x => x.UserId == user.Id);
+            var userMonthlySalary = _context.UserDetails
+                                            .Where(x => x.UserId == user.Id)
+                                            .Select(x => x.MonthlySalary)
+                                            .FirstOrDefault();
 
             //As of now password is validated
             var token = GenerateJWTToken(user, client);
@@ -66,7 +70,10 @@ namespace FinTrack.Controllers
             {
                 Token = token,
                 UserID = user.Id,
+                UserFirstName = user.FirstName,
+                UserLastName = user.LastName,
                 HasUserDetail = hasUserDetail,
+                UserMonthlySalary = userMonthlySalary
             });
         }
 
