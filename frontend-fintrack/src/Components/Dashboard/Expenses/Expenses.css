@@ -45,7 +45,7 @@
 
 .expense-pie-chart-plot {
   width: 100%;
-  height: 360px;
+  height: 350px !important;
 }
 
 .charts .expense-pie-chart-plot {
