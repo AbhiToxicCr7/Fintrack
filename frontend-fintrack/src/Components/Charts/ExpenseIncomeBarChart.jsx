@@ -13,13 +13,13 @@ export default function ExpenseIncomeBarChart({data}){
         <BarChart width={600} height={300} data={data}>
             <Bar
                 dataKey = "income"
-                fill="#f4f44e"
-                activeBar={<Rectangle fill="gold" stroke="purple" />}
+                fill="#38bdf8"
+                activeBar={<Rectangle fill="#7dd3fc" stroke="#bae6fd" />}
             />
             <Bar
                 dataKey="expense"
-                fill="#b04a0b"
-                activeBar={<Rectangle fill="pink" stroke="purple" />}
+                fill="#fb7185"
+                activeBar={<Rectangle fill="#fda4af" stroke="#fecdd3" />}
             />
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="name" />
