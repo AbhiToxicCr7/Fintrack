@@ -36,6 +36,48 @@
   margin: 50px;
 }
 
+.expense-pie-chart {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.expense-pie-chart-plot {
+  width: 100%;
+  height: 360px;
+}
+
+.charts .expense-pie-chart-plot {
+  height: 300px;
+}
+
+.expense-chart-legend {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.55rem 1rem;
+  width: min(700px, 100%);
+  margin: -2.5rem 0 0;
+  padding: 0 0.5rem;
+  list-style: none;
+  color: var(--text-primary);
+  font-size: 0.85rem;
+}
+
+.expense-chart-legend li {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.expense-chart-legend-swatch {
+  width: 0.7rem;
+  height: 0.7rem;
+  flex: 0 0 0.7rem;
+  border-radius: 2px;
+}
+
 .expense-inputs .input1 {
   display: flex;
   flex-direction: column;

@@ -18,6 +18,24 @@ function Home(){
    const userFirstName = localStorage.getItem('userFirstName');
    const loggedinUserID = localStorage.getItem('loggedinUserID');
    const token = localStorage.getItem('authToken');
+   const [transactions, setTransactions] = useState([]);
+
+   const getTransactions = () => {
+           const url = `https://localhost:44389/api/Dashboard/GetDashboardData?userId=${loggedinUserID}`;
+
+           axios.get(url, { headers: { Authorization: `Bearer ${token}` } })
+               .then((r)=>{
+                   setTransactions(r.data.RecentTransactions || []);
+               })
+               .catch(()=>{
+                   // fallback to older endpoint if present
+               });
+       }
+
+    useEffect(()=>{
+            getTransactions();
+            // eslint-disable-next-line react-hooks/exhaustive-deps
+        },[]);
 
    const {
     data: userDetails,
@@ -94,9 +112,31 @@ function Home(){
                   <ExpenseIncomeBarChart data={chartData}></ExpenseIncomeBarChart>   
                 </ResponsiveContainer>
 
-                <ResponsiveContainer width="100%" height="100%">
-                    <ExpensesChart data={pieChartData}></ExpensesChart>
-                </ResponsiveContainer>
+                <ExpensesChart data={pieChartData} responsive></ExpensesChart>
+            </div>
+            <div className='recent-trasaction-container'>
+                <table className='transaction-table'>
+                    <thead>
+                            <tr>
+                                <th>Amount</th>
+                                <th>Note</th>
+                                <th>Category</th>
+                                <th>Date</th>
+                                <th>TransactionType</th>
+                            </tr>
+                    </thead>
+                    <tbody>
+                            {transactions.map((item)=> (
+                                <tr key={item.Id || item.id}>
+                                    <td>{item.Amount}</td>
+                                    <td>{item.Note}</td>
+                                    <td>{item.Category}</td>
+                                    <td>{item.Date ? (item.Date.split('T')[0]) : ''}</td>
+                                    <td>{item.TransactionType}</td>
+                                </tr>
+                            ))}
+                    </tbody>
+                </table>
             </div>
         </main>
     )

@@ -169,6 +169,52 @@ body{
   height: 300px;
 }
 
+.recent-trasaction-container {
+  margin-top: 1.5rem;
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.transaction-table {
+  width: 100%;
+  min-width: 620px;
+  border-collapse: collapse;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 8px 30px -12px rgba(2, 6, 23, 0.6);
+}
+
+.transaction-table th {
+  text-align: left;
+  padding: 0.85rem 1rem;
+  font-size: 0.9rem;
+  color: #94a3b8;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.transaction-table td {
+  padding: 0.85rem 1rem;
+  color: rgba(255, 255, 255, 0.95);
+  font-size: 0.95rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.transaction-table tbody tr:nth-child(even) {
+  background: rgba(255, 255, 255, 0.015);
+}
+
+.transaction-table tbody tr:hover td {
+  background: rgba(99, 102, 241, 0.03);
+}
+
+.transaction-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
 /* End Home  */
 
 /* EXPENSES */
