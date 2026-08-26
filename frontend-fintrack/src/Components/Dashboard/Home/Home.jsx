@@ -73,9 +73,9 @@ function Home(){
 
     return (
         <main className='main-container'>
-            <div className='main-title'>
+            {/* <div className='main-title'>
                 <h3>Welcome {userFirstName}</h3>
-            </div>
+            </div> */}
 
             <div className='main-cards'>
                 <div className='card'>

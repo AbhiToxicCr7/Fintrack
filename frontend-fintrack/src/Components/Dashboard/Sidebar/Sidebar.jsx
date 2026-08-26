@@ -6,6 +6,7 @@ import { HiDocumentChartBar } from "react-icons/hi2";
 import { IoSettings } from "react-icons/io5";
 import { NavLink } from "react-router-dom";
 import Expenses from '../Expenses/Expenses.jsx';
+import './Sidebar.css';
 
 function Sidebar({ onNavigate }){
     return (
@@ -16,38 +17,26 @@ function Sidebar({ onNavigate }){
             </div>
             <ul className='sidebar-list'>
                 <li className='sidebar-list-item'>
-                    {/* <a href="">
-                        <AiFillDashboard className='icon'></AiFillDashboard>Dashboard
-                    </a> */}
                     <button type="button" className='link-btn' onClick={() => onNavigate?.('dashboard')}>
                         <AiFillDashboard className='icon'></AiFillDashboard>Dashboard
                     </button>
                 </li>
                 <li className='sidebar-list-item'>
-                    {/* <a href="">
-                        <TfiAngleDoubleUp className='icon'></TfiAngleDoubleUp>Income
-                    </a> */}
                     <button type="button" className='link-btn' onClick={() => onNavigate?.('income')}>
                         <TfiAngleDoubleUp className='icon'></TfiAngleDoubleUp>Income
                     </button>
                 </li>
                 <li className='sidebar-list-item'>
-                    {/* <a href="">
-                        <TfiAngleDoubleDown className='icon'></TfiAngleDoubleDown>Expenses
-                    </a> */}
                     <button type="button" className='link-btn' onClick={() => onNavigate?.('expenses')}>
                         <TfiAngleDoubleDown className='icon'></TfiAngleDoubleDown>Expenses
                     </button>
                 </li>
                 <li className='sidebar-list-item'>
-                    <a href="">
+                    <button type="button" className='link-btn' onClick={() => onNavigate?.('reports')}>
                         <HiDocumentChartBar className='icon'></HiDocumentChartBar>Reports
-                    </a>
+                    </button>
                 </li>
                 <li className='sidebar-list-item'>
-                    {/* <a href="">
-                        <IoSettings className='icon'></IoSettings>Settings
-                    </a> */}
                     <button type="button" className='link-btn' onClick={() => onNavigate?.('settings')}>
                         <IoSettings className='icon'></IoSettings>Settings
                     </button>

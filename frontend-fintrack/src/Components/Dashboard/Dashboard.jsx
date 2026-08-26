@@ -50,6 +50,9 @@ export const Dashboard = () => {
         case "settings":
             return <Settings/>;
 
+        case "reports":
+            return <Home/>;
+
         default:
             return <Home />;
     }
@@ -57,7 +60,7 @@ export const Dashboard = () => {
 
     return (
         <div className="grid-container-dashboard">
-           {activeView !== "expenses" && <DashboardHeader />}
+           {activeView !== "expenses"}
             <Sidebar onNavigate={setActiveView} />
             {renderActiveView()}
         </div>
